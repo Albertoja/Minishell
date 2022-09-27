@@ -1,11 +1,9 @@
 #include "minishell.h"
 
-char *readline(char const *prompt);
-
 void ft_wait_for_input()
 {
-	char *inp;
+	char *input;
 
-	inp = readline("Minishell $>");
-	printf("%s", inp);
+	input = readline(YELLOW"Minishell $>"RESET);
+	check_str(input);
 }

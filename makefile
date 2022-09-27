@@ -1,4 +1,5 @@
-SRCS	= main.c wait.c
+
+SRCS	= main.c wait.c check.c error.c
 
 OBJS	= ${SRCS:.c=.o}
 

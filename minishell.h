@@ -18,5 +18,7 @@
 # define PURPLE				"\x1b[35m"
 # define CYAN				"\x1b[36m"
 
-void ft_wait_for_input();
+void	ft_wait_for_input();
+void	check_str(char *str);
+void	ft_error(char *str);
 #endif
