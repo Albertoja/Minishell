@@ -3,5 +3,5 @@
 void	ft_error(char *str)
 {
 	printf("Error: %s\n", str);
-	exit(0);
+	ft_wait_for_input();
 }

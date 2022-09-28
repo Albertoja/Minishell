@@ -1,10 +1,14 @@
 #include "minishell.h"
 
-int ft_check_pipe(char *str)
+void ft_check_pipe(char *str)
 {
 	int aux;
 
 	aux = 0;
+	while (str[aux] == ' ' || (str[aux] >= 9 && str[aux] <= 13))
+		aux++;
+	if (str[aux] == '|')
+		ft_error("pipe suelto");
 	while(str[aux])
 	{
 		if (str[aux] == '|')
@@ -12,21 +16,21 @@ int ft_check_pipe(char *str)
 			aux++;
 			while(str[aux])
 			{
-				if(str[aux] == ' ' || (str[aux] >= 9 && str[aux] <= 13))
+				if (str[aux] == ' ' || (str[aux] >= 9 && str[aux] <= 13))
 					aux++;
 				else
-					return (1);
+					break ;
 			}
-			ft_error("pipe suelto");
+			if(!str[aux])
+				ft_error("pipe suelto");
 		}
 		aux++;
 	}
-	return (0);
 }
 void check_str(char *str)
 {
-	int aux;
-	int aux2;
+	int	aux;
+	int	aux2;
 
 	aux = 0;
 	aux2 = 0;
