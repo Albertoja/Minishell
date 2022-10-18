@@ -19,4 +19,4 @@ void	ft_print_matrix(t_all *all)
 	} 
 }
 
-//PITO
+//vagina
