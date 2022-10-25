@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_pipe.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/18 18:21:57 by aespinos          #+#    #+#             */
+/*   Updated: 2022/10/24 19:20:15 by aespinos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	ft_count(char const *s, char c, int i)
@@ -7,6 +19,26 @@ int	ft_count(char const *s, char c, int i)
 	a = 0;
 	while (s[i] != '\0' && s[i] != c)
 	{
+		if (s[i] == 34)
+		{
+			i++;
+			a++;
+			while (s[i] != 34)
+			{
+				i++;
+				a++;
+			}
+		}
+		if (s[i] == 39)
+		{
+			i++;
+			a++;
+			while (s[i] != 39)
+			{
+				i++;
+				a++;
+			}
+		}
 		a++;
 		i++;
 	}
@@ -20,10 +52,6 @@ int	ft_countwords(char const *s, char c)
 
 	i = 0;
 	cont = 0;
-	if (s[i] == 34 || s[i] == 39)
-	{
-
-	}
 	while (s[i] == c && s[i] != '\0')
 		i++;
 	while (s[i] != '\0')
@@ -33,7 +61,21 @@ int	ft_countwords(char const *s, char c)
 		if (s[i] == '\0')
 			break ;
 		while (s[i] != c && s[i] != '\0')
+		{
+			if (s[i] == 34)
+			{
 				i++;
+				while (s[i] != 34)
+					i++;
+			}
+			if (s[i] == 39)
+			{
+				i++;
+				while (s[i] != 39)
+					i++;
+			}
+				i++;
+		}
 		cont++;
 	}
 	return (cont);
@@ -71,7 +113,21 @@ char	**ft_splitaux(char **str, const char *s, char c, int a)
 		}
 		j = 0;
 		while (s[a] != '\0' && s[a] != c)
+		{
+			if (s[a] == 34)
+			{
+				str[i][j++] = s[a++];
+				while (s[a] != 34)
+					str[i][j++] = s[a++];
+			}
+			else if (s[a] == 39)
+			{
+				str[i][j++] = s[a++];
+				while (s[a] != 39)
+					str[i][j++] = s[a++];
+			}
 			str[i][j++] = s[a++];
+		}
 		str[i][j] = '\0';
 		while (s[a] == c && s[a])
 			a++;

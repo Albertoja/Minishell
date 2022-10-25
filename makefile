@@ -1,5 +1,5 @@
 
-SRCS	= main.c wait.c check.c error.c split_pipe.c print_matrix.c ft_make_lst.c
+SRCS	= main.c wait_input.c check_str.c error.c split_pipe.c print_matrix.c ft_make_lst.c create_history.c get_next_line.c  #utils.c
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -9,7 +9,7 @@ CC	= gcc
 
 RM	= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror #-g3 -fsanitize=address
 
 LIBFT = libft/libft.a
 
