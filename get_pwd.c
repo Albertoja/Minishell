@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   get_pwd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 16:24:38 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/03 17:10:18 by aespinos         ###   ########.fr       */
+/*   Created: 2022/11/02 17:31:05 by aespinos          #+#    #+#             */
+/*   Updated: 2022/11/03 18:34:51 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strncmp(const char *sr1, const char *sr2, size_t n)
+char	*get_pwd(void)
 {
-	size_t			c;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	char	*ret;
+	int		len;
 
-	s1 = (unsigned char *)sr1;
-	s2 = (unsigned char *)sr2;
-	c = 0;
-	if (n == 0)
-		return (0);
-	while ((s1[c] != '\0') && (s2[c] != '\0') \
-			&& (s1[c] == s2[c]) && (c < (n - 1)))
-		c++;
-	return (s1[c] - s2[c]);
+	len = 1;
+	ret = NULL;
+	while (1)
+	{
+		ret = malloc(sizeof(char) * len);
+		if (getcwd(ret, len) == NULL)
+			free(ret);
+		else
+			break ;
+		len++;
+	}
+	return (ret);
 }

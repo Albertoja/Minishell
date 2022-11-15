@@ -1,5 +1,5 @@
 
-SRCS	= main.c wait_input.c check_str.c error.c split_pipe.c print_matrix.c ft_make_lst.c create_history.c get_next_line.c  #utils.c
+SRCS	= main.c wait_input.c check_str.c error.c split_pipe.c print_matrix.c ft_make_lst.c create_history.c get_next_line.c search_files.c search_redirection.c clean_quotes.c builtins.c ft_echo.c ft_cd.c get_pwd.c ft_export.c #utils.c
 
 OBJS	= ${SRCS:.c=.o}
 
