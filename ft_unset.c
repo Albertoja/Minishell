@@ -1,58 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 18:21:50 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/17 17:56:08 by aespinos         ###   ########.fr       */
+/*   Created: 2022/11/15 17:11:38 by aespinos          #+#    #+#             */
+/*   Updated: 2022/11/17 17:45:42 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void    leaks(void)
-// {
-//     system("leaks minishell");
-// }
-
-int	count_str(char **matrix)
-{
-	int	ret;
-
-	ret = 0;
-	while (matrix[ret])
-		ret++;
-	return (ret);
-}
-
-char	**copy_matrix(char **matrix)
+char	**ft_delete_str_matrix(char **matrix, int col)
 {
 	char	**env;
 	char	**ret;
 
 	if (!matrix)
 		return (NULL);
-	env = malloc(sizeof(char *) * (count_str(matrix) + 1));
+	env = malloc(sizeof(char *) * (count_str(matrix)));
 	if (!env)
 		return (NULL);
 	ret = env;
 	while (*matrix)
-		*env++ = ft_strdup(*matrix++);
+	{
+		if (col == 0)
+			matrix++;
+		if (*matrix)
+			*env++ = ft_strdup(*matrix++);
+		col--;
+	}
 	*env = NULL;
 	return (ret);
 }
 
-int	main(int argc, char *argv[], char *envp[])
+char	**ft_unset(char **cmds, char **env)
 {
-	char	**env;
+	int	cont;
+	int	col;
 
-	//atexit(leaks);
-	if (argc != 1 || argv[1] || !envp)
-		return (0);
-	env = copy_matrix(envp);
-	ft_read_history();
-	ft_wait_for_input(env);
-	ft_free_matrix(env);
+	cont = 1;
+	while (cmds[cont])
+	{
+		col = ft_comp_var(cmds[cont], env);
+		printf("aqui! %i", col);
+		if (col >= 0)
+			env = ft_delete_str_matrix(env, col);
+		cont++;
+		write(1, "a\n", 2);
+	}
+	return (env);
 }

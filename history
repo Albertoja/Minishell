@@ -1,49 +1,149 @@
-export
-export
 export a
-export abc
-export abc
-export abc
-export abc
-export abc
-export abc
-export abc
-export abc=2
-export abc=5
-export acd=2
-export acd=2
-export acd=2
-export acd=2
-d=3
-export
-export acd=3
 exit
-export acd=3
-export acd=2
-export acd=2
-export acd=2
-export acd=2
-export acd=3
-export acd=3
-export acd=3
-export acd=2
-export acd=2
-export acd=3
-export acd=3
+f > archivo1 > archivo2
+f > archivo1 archivo2
+f > archivo1 archivo2 > archivo3
+awk
+f > archivo1 archivo2 > archivo3
+f > archivo1 archivo2 > archivo3
+f > archivo1 archivo2 > archivo
+f > archivo1 archivo2 > archivo
+f > archivo1 archivo2 > archivo
+f > archivo1 archivo2 > archivo
+f > archivo1 archivo2 > archivo
+f > arc
+f > arc
+f > arc < fd
+f > arc
+f > arc
+f > arcd
+f > arcd > h
+f > arcd > hj
+f > arcd hj
+f > arcd hj
+f > arcd hj
+f > arcd > hj
+f > arcd > hj
+f > arcd > hj
+f > arcd hj
+f > arcd > hg
+f > arcd > hg > fg
+make
+f > arcd > hg > fg
+f > arcd > hg > fg
+f > arcd > hg > fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f
+f
+f
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fg
+f > arcd > hg fggg hg
+f > arcd > hg fggg hg
+comado1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comado1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 > archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 > archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 > archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3 aaa
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3 aaa
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3 aaa
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3 aaa
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3 aaa
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3 aaa
+exit
+exit 9223372036854775808
+export
+exp
 export
 export
-export a=2
-export a=3
+export
 export a
 export
-export a = 4
-export a=4
-env
-eport
-export
-export a=2
-export
-export b=3
-export
-export a=1
-export
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3 aaa
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+comando1 comando2 >archivo1 >> archivo2 comando3 < archivo3
+
+
+            
+a
+a >
+a >
+a >< a
+a >< a
+a > a
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a > 
+a >
+a > >
+a > >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >
+a >>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+a >>
+a >>
+comando1 comando2 > file1 comando3 >> file2

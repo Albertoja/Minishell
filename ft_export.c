@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_export.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/11/17 17:38:12 by aespinos          #+#    #+#             */
+/*   Updated: 2022/11/17 18:09:18 by aespinos         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 int	ft_len_equal(char *str, char a)
@@ -10,7 +22,6 @@ int	ft_len_equal(char *str, char a)
 		ret++;
 		str++;
 	}
-	//write(1, "x", 1);
 	return (ret);
 }
 
@@ -27,20 +38,22 @@ int	ft_comp_var(char *cmds, char **env)
 			return (ret);
 		ret++;
 	}
-	return (0);
+	return (-1);
 }
 
 int	ft_check_export(char *str)
 {
 	while (*str)
 	{
-		if ((*str >= '0' && *str <= '9') || (*str >= 'A' && *str <= 'Z') || (*str >= 'a' && *str <= 'z') || (*str == '=') || (*str == '_'))
+		if ((*str >= '0' && *str <= '9') || (*str >= 'A' && *str <= 'Z')
+			|| (*str >= 'a' && *str <= 'z') || (*str == '=') || (*str == '_'))
 			str++;
 		else
 			return (0);
 	}
 	return (1);
 }
+
 static char	**copy_str_matrix(char **env, char *str, int a)
 {
 	int		i;
@@ -50,48 +63,41 @@ static char	**copy_str_matrix(char **env, char *str, int a)
 	new_env = malloc(sizeof(char *) * (count_str(env) + 2));
 	while (env[++i])
 	{
-		if (i == a && a != 0)
+		if (i == a && a != -1)
 			new_env[i] = ft_strdup(str);
 		else
 			new_env[i] = ft_strdup(env[i]);
 	}
-	if (a == 0)
+	if (a == -1)
 		new_env[i] = ft_strdup(str);
 	new_env[++i] = NULL;
-	//ft_free_matrix(env);
 	return (new_env);
 }
 
 char	**ft_export(char **cmds, char **env)
 {
 	int	cont;
-	int	cont2;
 	int	cop;
 
 	cop = 0;
-	cont2 = 1;
-	cont = 0;
+	cont = -1;
 	if (!cmds[1] || !cmds || !*cmds)
 	{
-		while(env[cont])
-		{
+		while (env[++cont])
 			printf("declare -x %s\n", env[cont]);
-			cont++;
-		}
 		return (env);
 	}
-	while(cmds[cont2])
+	cont = 1;
+	while (cmds[cont])
 	{
-		if (ft_check_export(cmds[cont2]) == 0)
+		if (ft_check_export(cmds[cont]) == 0)
 		{
-			printf("export: `%s': not a valid identifier\n", cmds[cont2]);
+			printf("export: `%s': not a valid identifier\n", cmds[cont]);
 			exit(0);
 		}
-		cop = ft_comp_var(cmds[cont2], env);
-		printf("------>%i\n", cop);
-		env = copy_str_matrix(env, cmds[cont2], cop);
-		cont2++;
+		cop = ft_comp_var(cmds[cont], env);
+		env = copy_str_matrix(env, cmds[cont], cop);
+		cont++;
 	}
 	return (env);
 }
- 

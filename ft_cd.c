@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:29 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/07 15:50:27 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:37:38 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ char	*cd_normal(char **cmds, char *path)
 	close(fd);
 	return (newpath);
 }
+
 char	*cd_back(char *path)
 {
 	int		len;
@@ -70,7 +71,7 @@ char	*cd_home(char **env)
 {
 	char	*ret;
 
-	while(*env)
+	while (*env)
 	{
 		if (ft_strncmp(*env, "HOME=", 5) == 0)
 		{
@@ -89,7 +90,6 @@ char	**ft_cd(char **cmds, char **env)
 
 	if (!env)
 		return (NULL);
-	//ft_print_matrix(env);
 	path = get_pwd();
 	if (!cmds[1])
 		newpath = cd_home(env);

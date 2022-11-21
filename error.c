@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:46 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/02 17:27:22 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:55:46 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	ft_error(char *str)
 {
 	printf("Error: %s\n", str);
-	//ft_wait_for_input();
 }
 
 void	hello_norminette(char **str, char const *s, int **i, int *a)

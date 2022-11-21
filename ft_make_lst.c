@@ -6,35 +6,19 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:53:55 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/03 18:36:15 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/11/17 18:39:16 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**search_cmds(char *str)
+t_all	*ft_basic_parse(char *str, t_all *head)
 {
-	char	*straux;
-	int		len;
-	int		lenaux;
-	char	**ret;
-
-	len = 0;
-	lenaux = 0;
-	while (str[len] && str[len] != '<' && str[len] != '>')
-	{
-		len++;
-	}
-	straux = malloc(sizeof(char) * (len + 1));
-	while (lenaux < len)
-	{
-		straux[lenaux] = str[lenaux];
-		lenaux++;
-	}
-	straux[lenaux] = '\0';
-	ret = ft_split_pipe(straux, ' ');
-	free(straux);
-	return (ret);
+	head->dir = search_redirection(str);
+	head->cmds = search_cmds(str);
+	head->files = search_files(str);
+	head->files = ft_clean_quotes(head->files);
+	return (head);
 }
 
 t_all	*ft_parse(char **matrix, int *cont)
@@ -44,16 +28,13 @@ t_all	*ft_parse(char **matrix, int *cont)
 	head = ft_calloc(sizeof(t_all), 1);
 	if (matrix[++(*cont)])
 	{
-		head->dir = search_redirection(matrix[*cont]);
-		head->cmds = search_cmds(matrix[*cont]);
-		head->files = search_files(matrix[*cont]);
-		head->files = ft_clean_quotes(head->files);
-		// printf("redireccion:%s\n", head->dir);
-		// printf("Comandos:\n");
-		// ft_print_matrix(head->cmds);
-		// printf("Archivos:\n");
-		// ft_print_matrix(head->files);
-		// printf("-------------------\n");
+		head = ft_basic_parse(matrix[*cont], head);
+		printf("redireccion:%s\n", head->dir);
+		printf("Comandos:\n");
+		ft_print_matrix(head->cmds);
+		printf("Archivos:\n");
+		ft_print_matrix(head->files);
+		printf("-------------------\n");
 	}
 	return (head);
 }

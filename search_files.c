@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 19:36:37 by aespinos          #+#    #+#             */
-/*   Updated: 2022/10/25 19:54:32 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/11/17 17:33:36 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,15 @@ char	*search_files02(char *str, int len)
 	{
 		if (str[cont[0]] == '<' || str[cont[0]] == '>')
 		{
-			while (str[cont[0]])
+			while (str[cont[0]] == '<' || str[cont[0]] == '>')
+			{
+				str_aux[cont[1]] = ' ';
+				cont[1]++;
+				cont[0]++;
+			}
+			if (str[cont[0]] == ' ')
+				cont[0]++;
+			while (str[cont[0]] && str[cont[0]] != ' ')
 			{
 				if (str[cont[0]] == '<' || str[cont[0]] == '>')
 					str_aux[cont[1]] = ' ';
@@ -52,11 +60,16 @@ int	search_files01(char *str)
 	{
 		if (str[cont] == '<' || str[cont] == '>')
 		{
-			while (str[cont])
+			while (str[cont] == '<' || str[cont] == '>')
+				cont++;
+			while (str[cont] == ' ')
+				cont++;
+			while (str[cont] && str[cont] != ' ')
 			{
 				cont2++;
 				cont++;
 			}
+			cont2++;
 		}
 		else
 			cont++;
