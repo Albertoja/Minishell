@@ -6,16 +6,16 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:50 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/17 17:56:08 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/11/28 20:13:22 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// void    leaks(void)
-// {
-//     system("leaks minishell");
-// }
+void    leaks(void)
+{
+    system("leaks minishell");
+}
 
 int	count_str(char **matrix)
 {
@@ -48,7 +48,7 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	char	**env;
 
-	//atexit(leaks);
+	atexit(leaks);
 	if (argc != 1 || argv[1] || !envp)
 		return (0);
 	env = copy_matrix(envp);

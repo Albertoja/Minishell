@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/17 18:09:41 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/11/28 19:53:02 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@
 # define BLUE				"\x1b[34m"
 # define PURPLE				"\x1b[35m"
 # define CYAN				"\x1b[36m"
-# define BUFFER_SIZE 3
+# define BUFFER_SIZE 1
 
 void	ft_wait_for_input(char **env);
 void	check_str(char *str);
 void	ft_error(char *str);
 char	**ft_split_pipe(char const *s, char c);
 int		ft_print_matrix(char **matrix);
-t_all	*ft_create_lst(char **matrix);
+t_all	*ft_create_lst(char **matrix, char **env);
 void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(const char *s1, char const *s2);
@@ -67,4 +67,9 @@ int		count_str(char **matrix);
 int		ft_comp_var(char *cmds, char **env);
 char	**ft_unset(char **cmds, char **env);
 char	**search_cmds(char *str);
+int		ft_comp_var(char *cmds, char **env);
+char	**ft_dollar(char **mat, char **env);
+char	*ft_dollar_sust_str(char *str, char **env);
+char	*search_line_env(char *str, char **env);
+char	*elim_dollar_putequal(char *str);
 #endif

@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:51:39 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/17 18:05:06 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/11/23 18:58:50 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	ft_exit(char **str, char **envc)
 
 char	**ft_builtins(t_all *head, char **env)
 {
+	//head->cmds = ft_check_dollar(head->cmds, env);
 	if (ft_strncmp(head->cmds[0], "exit", 10) == 0)
 		ft_exit(head->cmds, env);
 	else if (ft_strncmp(head->cmds[0], "pwd", 10) == 0)

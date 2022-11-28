@@ -1,37 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   wait_input.c                                       :+:      :+:    :+:   */
+/*   free_matrix.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 18:21:59 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/28 20:08:14 by aespinos         ###   ########.fr       */
+/*   Created: 2022/10/18 19:22:29 by aespinos          #+#    #+#             */
+/*   Updated: 2022/10/18 19:37:29 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_wait_for_input(char **env)
+void	ft_free_matrix(char **matrix)
 {
-	t_all	*head;
-	char	**matrix;
-	char	*input;
+	int	i;
 
-	while (1)
-	{
-		input = readline(YELLOW"Minishell $>"RESET);
-		if (input && *input)
-		{
-			check_str(input);
-			ft_create_history(input);
-			matrix = ft_split_pipe(input, '|');
-			if (!matrix)
-				exit(0);
-			free(input);
-			head = ft_create_lst(matrix, env);
-			env = ft_builtins(head, env);
-			ft_lstclear_minishell(&head);
-		}
-	}
+	i = -1;
+	while (matrix[++i])
+		free(matrix[i]);
+	free(matrix);
 }

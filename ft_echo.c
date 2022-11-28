@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:57:26 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/02 15:57:41 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/11/24 17:32:10 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	ft_echo(char **str)
 	}
 	while (str[cont])
 	{
-		printf("%s", str[cont]);
+		printf("%s", (str[cont]));
+			if(str[cont+1])
+				printf(" ");
 		cont++;
 	}
 	if (sw == 0)
