@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/24 19:00:18 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/28 20:14:23 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/12/01 17:58:37 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,107 +14,135 @@
 #include <limits.h>
 #include <stdio.h>
 
-static size_t	ft_lenchar(char *str, char c)
+size_t	ft_linelen(const char *line)
 {
-	size_t	len;
-
-	len = 0;
-	if (!str)
-		return (0);
-	while (*str != c && *str++)
-		len++;
-	return (len);
-}
-
-static char	*ft_read_buffer_size(char *buffer_read, int *n, int fd)
-{
-	char	*temp;
-	char	*temp2;
-
-	temp = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	*n = read(fd, temp, BUFFER_SIZE);
-	if (*n == 0 || *n == -1)
-	{
-		*n = 0;
-		free(temp);
-		return (buffer_read);
-	}
-	temp[*n] = '\0';
-	temp2 = ft_strjoin(buffer_read, temp);
-	if (temp)
-		free(temp);
-	if (buffer_read)
-		free(buffer_read);
-	return (temp2);
-}
-
-static char	*ft_linecpy(char *buffer_read)
-{
-	char	*next_line;
-	char	*p;
-
-	if (!buffer_read)
-		return (NULL);
-	if (ft_strchr((const char *)buffer_read, '\n'))
-		next_line = malloc(sizeof(char) * (ft_lenchar(buffer_read, '\n') + 2));
-	else
-		next_line = malloc(sizeof(char) * (ft_lenchar(buffer_read, '\n') + 1));
-	if (!next_line)
-		return (NULL);
-	p = next_line;
-	while (*buffer_read != '\n' && *buffer_read)
-		*next_line++ = *buffer_read++;
-	if (*buffer_read == '\n')
-		*next_line++ = '\n';
-	*next_line = '\0';
-	return (p);
-}
-
-static char	*new_buffer_read(char *buffer_read)
-{
-	char	*new_buffer;
-	char	*p;
-	int		i;
+	size_t	i;
 
 	i = 0;
-	while (buffer_read && buffer_read[i] != '\n' && buffer_read[i])
+	while (line[i] != '\0' && line[i] != '\n')
 		i++;
-	if (!buffer_read || buffer_read[i] == '\0')
+	if (line[i] == '\n')
+		i++;
+	return (i);
+}
+
+char	*ft_strjoingnl(const char *s1, char const *s2)
+{
+	size_t	i;
+	size_t	k;
+	size_t	len1;
+	size_t	len2;
+	char	*str;
+
+	if (!s1 || !s2)
+		return (NULL);
+	i = -1;
+	k = -1;
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	while (++i < len1)
+		str[i] = s1[i];
+	while (++k < len2)
 	{
-		free(buffer_read);
+		str[i] = s2[k];
+		i++;
+	}
+	str[i] = '\0';
+	free((void *)s1);
+	return (str);
+}
+
+static char	*ft_extraline(char *text)
+{
+	size_t	i;
+	size_t	len;
+	size_t	tlen;
+	char	*exline;
+
+	i = 0;
+	len = ft_linelen(text);
+	if (!text[len])
+	{
+		free(text);
 		return (NULL);
 	}
-	i++;
-	new_buffer = malloc(sizeof(char) * (ft_strlen(&buffer_read[i]) + 1));
-	if (!new_buffer)
+	tlen = ft_strlen(text);
+	exline = (char *)malloc(sizeof(char) * (tlen - len + 1));
+	if (!exline)
 		return (NULL);
-	p = new_buffer;
-	while (buffer_read[i])
-		*new_buffer++ = buffer_read[i++];
-	*new_buffer = 0;
-	free(buffer_read);
-	return (p);
+	while (len + i < tlen)
+	{
+		exline[i] = text[i + len];
+		i++;
+	}
+	exline[i] = '\0';
+	free(text);
+	return (exline);
+}
+
+static char	*ft_line(char *text)
+{
+	size_t	i;
+	size_t	len;
+	char	*line;
+
+	i = 0;
+	if (!text[i])
+		return (NULL);
+	len = ft_linelen(text);
+	line = (char *)malloc(sizeof(char) * (len + 1));
+	if (!line)
+		return (NULL);
+	while (i < len)
+	{
+		line[i] = text[i];
+		i++;
+	}
+	line[i] = '\0';
+	return (line);
+}
+
+static char	*ft_read(int fd, char *text)
+{
+	ssize_t	nb;
+	char	*buffer;
+
+	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
+		return (NULL);
+	nb = 1;
+	while (!ft_strchr(text, '\n') && nb != 0)
+	{
+		nb = read(fd, buffer, BUFFER_SIZE);
+		if (nb == -1)
+		{
+			free(buffer);
+			return (NULL);
+		}
+		buffer[nb] = '\0';
+		if (!text)
+			text = ft_strdup(buffer);
+		else
+			text = ft_strjoingnl(text, buffer);
+	}
+	free(buffer);
+	return (text);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer_read = NULL;
-	char		*next_line;
-	int			n;
+	static char	*text[OPEN_MAX];
+	char		*line;
 
-	n = 1;
-	if (BUFFER_SIZE <= 0 || fd < 0 || fd > OPEN_MAX)
+	if (fd < 0 || fd > OPEN_MAX || BUFFER_SIZE <= 0)
 		return (NULL);
-	while (!ft_strchr((const char *)buffer_read, '\n') && n)
-		buffer_read = ft_read_buffer_size(buffer_read, &n, fd);
-	if (!buffer_read)
+	text[fd] = ft_read(fd, text[fd]);
+	if (!text[fd])
 		return (NULL);
-	else if (!*buffer_read)
-	{
-		free(buffer_read);
-		return (NULL);
-	}
-	next_line = ft_linecpy(buffer_read);
-	buffer_read = new_buffer_read(buffer_read);
-	return (next_line);
+	line = ft_line(text[fd]);
+	text[fd] = ft_extraline(text[fd]);
+	return (line);
 }

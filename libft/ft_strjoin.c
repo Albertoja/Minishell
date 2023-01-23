@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:55:59 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/03 16:06:56 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/12/01 19:42:04 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,6 @@ char	*ft_strjoin(const char *s1, char const *s2)
 		i++;
 	}
 	str[i] = '\0';
-	//free((void *)s1);
+	free((void *)s1);
 	return (str);
 }

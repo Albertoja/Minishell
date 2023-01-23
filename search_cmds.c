@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:42:13 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/24 16:45:48 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:04:43 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,32 @@ int	ft_cmds_len(char *str)
 			cont++;
 		while (str[cont] && str[cont] == ' ')
 			cont++;
+		if (str[cont] && str[cont] == '"')
+		{
+			while (str[++cont] && str[cont] != '"')
+				cont++;
+		}
 		while (str[cont] && str[cont] != ' ')
 			cont++;
 	}
 	return (len);
+}
+
+int	search_cmds3(char *str, int cont)
+{
+	while (str[cont] && (str[cont] == '<' || str[cont] == '>'))
+		cont++;
+	while (str[cont] && str[cont] == ' ')
+		cont++;
+	if (str[cont] && str[cont] == '"')
+	{
+		cont++;
+		while (str[cont] && str[cont] != '"')
+			cont++;
+	}
+	while (str[cont] && str[cont] != ' ')
+		cont++;
+	return (cont);
 }
 
 char	*search_cmds2(char *str, int len)
@@ -53,12 +75,7 @@ char	*search_cmds2(char *str, int len)
 			cont2++;
 			cont++;
 		}
-		while (str[cont] && (str[cont] == '<' || str[cont] == '>'))
-			cont++;
-		while (str[cont] && str[cont] == ' ')
-			cont++;
-		while (str[cont] && str[cont] != ' ')
-			cont++;
+		cont = search_cmds3(str, cont);
 	}
 	ret[cont2] = '\0';
 	return (ret);

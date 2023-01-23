@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:44 by aespinos          #+#    #+#             */
-/*   Updated: 2022/10/18 20:13:02 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/12/20 18:01:45 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_check_pipe(char *str)
 	while (str[aux] == ' ' || (str[aux] >= 9 && str[aux] <= 13))
 		aux++;
 	if (str[aux] == '|')
-		ft_error("pipe suelto");
+		ft_error("pipe suelto", NULL);
 	while (str[aux])
 	{
 		if (str[aux] == '|')
@@ -34,13 +34,13 @@ void	ft_check_pipe(char *str)
 					break ;
 			}
 			if (!str[aux])
-				ft_error("pipe suelto");
+				ft_error("pipe suelto", NULL);
 		}
 		aux++;
 	}
 }
 
-void	check_str(char *str)
+char	*check_str(char *str)
 {
 	int	aux;
 
@@ -53,7 +53,7 @@ void	check_str(char *str)
 			while (str[aux] && str[aux] != 34)
 				aux++;
 			if (str[aux] != 34)
-				ft_error("comillas no cerradas");
+				return (ft_endquotes(str, '"'));
 		}
 		if (str[aux] == 39)
 		{
@@ -61,9 +61,10 @@ void	check_str(char *str)
 			while (str[aux] && str[aux] != 39)
 				aux++;
 			if (str[aux] != 39)
-				ft_error("comillas no cerradas");
+				return (ft_endquotes(str, '\''));
 		}
 		aux++;
 	}
 	ft_check_pipe(str);
+	return (str);
 }

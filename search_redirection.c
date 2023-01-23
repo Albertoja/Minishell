@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 20:32:39 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/17 18:45:23 by aespinos         ###   ########.fr       */
+/*   Updated: 2022/12/07 17:36:19 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,16 @@
 char	*search_redirection02(char *straux, char *ret, int cont)
 {
 	if (!straux[cont + 1])
-		ft_error("bad redirection");
+		ft_error("bad redirection", NULL);
 	else
 	{
 		cont++;
 		if (straux[cont] == '<')
-			ft_error("bad redirection");
+			ft_error("bad redirection", NULL);
 		if (straux[cont] == '>')
 		{
 			if (!straux[cont + 1])
-				ft_error("bad redirection");
+				ft_error("bad redirection", NULL);
 			else
 				return ("4");
 		}
@@ -37,16 +37,16 @@ char	*search_redirection02(char *straux, char *ret, int cont)
 char	*search_redirection01(char *straux, char *ret, int cont)
 {
 	if (!straux[cont + 1])
-		ft_error("bad redirection");
+		ft_error("bad redirection", NULL);
 	else
 	{
 		cont++;
 		if (straux[cont] == '>')
-			ft_error("bad redirection");
+			ft_error("bad redirection", NULL);
 		if (straux[cont] == '<')
 		{
 			if (!straux[cont + 1])
-				ft_error("bad redirection");
+				ft_error("bad redirection", NULL);
 			else
 				return ("3");
 		}

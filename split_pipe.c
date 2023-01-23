@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:57 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/23 19:21:50 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/23 18:22:51 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ int	ft_countwords(char const *s, char c)
 	cont = 0;
 	while (s[i] != '\0')
 	{
-		while (s[i] == c && s[i] != '\0')
+		while (s[i] && s[i] == c)
 				i++;
 		if (s[i] == '\0')
 			break ;
-		while (s[i] != c && s[i] != '\0')
+		while (s[i] && s[i] != c)
 		{
 			if (s[i] == 34 || s[i] == 39)
 			{
 				aux = s[i++];
-				while (s[i] != aux)
+				while (s[i] && s[i] != aux)
 					i++;
 			}
 			i++;
@@ -68,30 +68,34 @@ int	ft_countwords(char const *s, char c)
 
 char	**ft_splitaux(char **str, const char *s, char c, int a)
 {
-	int		*i;
+	int		i;
+	int		j;
 	int		pal;
+	char	aux;
 
 	pal = ft_countwords(s, c);
-	i = malloc(sizeof(int) * 2);
-	i[0] = 0;
+	i = 0;
 	while (pal--)
 	{
-		str[i[0]] = (char *)malloc(sizeof(char) * (ft_count(s, c, a) + 1));
-		if (!str[i[0]])
-		{
-			ft_free_matrix(str);
-			return (NULL);
-		}
-		i[1] = 0;
+		str[i] = (char *)malloc(sizeof(char) * (ft_count(s, c, a) + 1));
+		j = 0;
 		while (s[a] != '\0' && s[a] != c)
-			hello_norminette(str, s, &i, &a);
-		str[i[0]][i[1]] = '\0';
+		{
+			if (s[a] == 34 || s[a] == 39)
+			{
+				aux = s[a];
+				str[i][j++] = s[a++];
+				while (s[a] != aux)
+					str[i][j++] = s[a++];
+			}
+			str[i][j++] = s[a++];
+		}
+		str[i][j] = '\0';
 		while (s[a] == c && s[a])
 			a++;
-		i[0]++;
+		i++;
 	}
-	str[i[0]] = NULL;
-	free(i);
+	str[i] = NULL;
 	return (str);
 }
 
@@ -101,7 +105,7 @@ char	**ft_split_pipe(char const *s, char c)
 	char	**str;
 
 	a = 0;
-	if (!s)
+	if (!s || !*s || s == NULL)
 		return (NULL);
 	str = (char **)malloc(sizeof(char *) * (ft_countwords(s, c) + 1));
 	if (!str)

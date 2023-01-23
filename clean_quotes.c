@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:45:37 by aespinos          #+#    #+#             */
-/*   Updated: 2022/10/26 18:48:28 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/23 17:57:25 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,26 @@ int	count_no_quotes(char *str)
 {
 	int		i;
 	char	com;
+	int		a;
+	int		b;
 
+	a = 0;
+	b = 0;
 	i = 0;
-	while (*str)
+	a = ft_strlen(str);
+	while (b < a)
 	{
-		if (*str == 34 || *str == 39)
+		if (str[b] == 34 || str[b] == 39)
 		{
-			com = *str;
-			str++;
-			while (*str && *str != com)
+			com = str[b++];
+			while (str[b] && str[b] != com)
 			{
 				i++;
-				str++;
+				b++;
 			}
 		}
-		str++;
-		i++;
+		if (str[b++])
+			i++;
 	}
 	return (i);
 }
@@ -48,14 +52,11 @@ char	*copy_no_quotes(char *str)
 	{
 		if (*str == 34 || *str == 39)
 		{
-			com = *str;
-			str++;
+			com = *str++;
 			while (*str && *str != com)
-			{
-				aux[i] = *str;
-				i++;
-				str++;
-			}
+				aux[i++] = *str++;
+			if (aux[i] != com)
+				break ;
 		}
 		if (*str != com)
 			aux[i++] = *str;
@@ -71,6 +72,8 @@ char	**ft_clean_quotes(char **files)
 	int		i;
 
 	i = -1;
+	if (!files)
+		return (NULL);
 	while (files[++i])
 	{
 		aux = copy_no_quotes(files[i]);

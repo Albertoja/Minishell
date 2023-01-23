@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear_minishell.c                            :+:      :+:    :+:   */
+/*   ft_strjoin_n.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 17:52:56 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/23 18:04:57 by aespinos         ###   ########.fr       */
+/*   Created: 2023/01/19 19:36:07 by aespinos          #+#    #+#             */
+/*   Updated: 2023/01/19 19:36:08 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"minishell.h"
 
-void	ft_lstclear_minishell(t_all **lst)
+char	*ft_strjoin_n(char *str1, char *str2, int n)
 {
-	t_all	*temp;
+	int		cont;
+	char	*ret;
+	char	*aux;
 
-	if (!*lst)
-		return ;
-	temp = *lst;
-	*lst = NULL;
-	while (temp)
+	cont = 0;
+	aux = malloc(sizeof(char) * (n + 1));
+	while (n--)
 	{
-		if (temp->cmds)
-			ft_free_matrix(temp->cmds);
-		if (temp->files)
-			ft_free_matrix(temp->files);
-		if (temp->dir)
-			free(temp->dir);
-		free(temp);
-		temp = temp->next;
+		aux[cont] = str2[cont];
+		cont++;
 	}
+	aux[cont] = '\0';
+	if (!str1)
+		return (aux);
+	ret = ft_strjoin(str1, aux);
+	free (aux);
+	return (ret);
 }
