@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   split_pipe.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:57 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/23 18:22:51 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/25 16:12:58 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_count(char const *s, char c, int i)
+int	ft_countpipe(char const *s, char c, int i)
 {
 	int		a;
 	char	aux;
@@ -37,7 +37,7 @@ int	ft_count(char const *s, char c, int i)
 	return (a);
 }
 
-int	ft_countwords(char const *s, char c)
+int	ft_countwordspipe(char const *s, char c)
 {
 	int		i;
 	int		cont;
@@ -66,18 +66,18 @@ int	ft_countwords(char const *s, char c)
 	return (cont);
 }
 
-char	**ft_splitaux(char **str, const char *s, char c, int a)
+char	**ft_splitauxpipe(char **str, const char *s, char c, int a)
 {
 	int		i;
 	int		j;
 	int		pal;
 	char	aux;
 
-	pal = ft_countwords(s, c);
+	pal = ft_countwordspipe(s, c);
 	i = 0;
 	while (pal--)
 	{
-		str[i] = (char *)malloc(sizeof(char) * (ft_count(s, c, a) + 1));
+		str[i] = (char *)malloc(sizeof(char) * (ft_countpipe(s, c, a) + 1));
 		j = 0;
 		while (s[a] != '\0' && s[a] != c)
 		{
@@ -107,10 +107,10 @@ char	**ft_split_pipe(char const *s, char c)
 	a = 0;
 	if (!s || !*s || s == NULL)
 		return (NULL);
-	str = (char **)malloc(sizeof(char *) * (ft_countwords(s, c) + 1));
+	str = (char **)malloc(sizeof(char *) * (ft_countwordspipe(s, c) + 1));
 	if (!str)
 		return (NULL);
 	while (s[a] == c)
 		a++;
-	return (ft_splitaux(str, s, c, a));
+	return (ft_splitauxpipe(str, s, c, a));
 }

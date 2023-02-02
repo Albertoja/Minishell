@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:38:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/10 16:16:04 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:00:42 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	**copy_str_matrix(char **env, char *str, int a)
 	return (new_env);
 }
 
-char	**ft_export(char **cmds, char **env)
+void	ft_export(char **cmds, char **env)
 {
 	int	cont;
 	int	cop;
@@ -89,7 +89,7 @@ char	**ft_export(char **cmds, char **env)
 	{
 		while (env[++cont])
 			printf("declare -x %s\n", env[cont]);
-		return (env);
+		return ;
 	}
 	cont = 1;
 	while (cmds[cont])
@@ -103,5 +103,4 @@ char	**ft_export(char **cmds, char **env)
 		env = copy_str_matrix(env, cmds[cont], cop);
 		cont++;
 	}
-	return (env);
 }

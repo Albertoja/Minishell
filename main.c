@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:50 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/23 18:22:20 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:38:57 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,6 @@ int	main(int argc, char *argv[], char *envp[])
 	status = 0;
 	env = copy_matrix(envp);
 	ft_read_history();
-	ft_wait_for_input(env, status);
+	ft_wait_for_input(env, status,ft_homepath(env));
 	ft_free_matrix(env);
 }

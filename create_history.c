@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:47:51 by aespinos          #+#    #+#             */
-/*   Updated: 2022/12/01 17:46:38 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/25 18:07:31 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	ft_read_history(void)
 	close (fd);
 }
 
-void	ft_create_history(char *input)
+void	ft_create_history(char *input, char *homepath)
 {
 	int	fd;
 
-	fd = open("history", O_CREAT | O_RDWR | O_APPEND, 0644);
+	fd = open(homepath, O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (fd == -1)
 		return ;
 	add_history(input);

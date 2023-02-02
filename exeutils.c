@@ -1,26 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   exeutils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 17:53:17 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/27 11:16:52 by magonzal         ###   ########.fr       */
+/*   Created: 2022/11/15 19:44:07 by magonzal          #+#    #+#             */
+/*   Updated: 2023/01/27 11:18:27 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_homepath(char *env[])
+char	*get_path(char *cmd, char *envp[])
 {
+	char	**paths;
+	char	*goodpath;
+	int		i;
 	int		j;
-	char	*homepath;
 
+	i = 0;
 	j = 0;
-	while (env[++j] && ft_strncmp(env[j], "OLDPWD=", 7))
-		homepath = ft_strdup(env[j]);
-	homepath = ft_strtrim(homepath, "PWD=");
-	homepath = ft_strjoinm(homepath, "/history");
-	return (homepath);
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5))
+		i++;
+	paths = ft_split(envp[i] + 5, ':');
+	cmd = ft_strjoinm("/", cmd);
+	while (paths[j])
+	{
+		goodpath = ft_strjoin(paths[j], cmd);
+		if (access(goodpath, 0) == 0)
+		{
+			return (goodpath);
+		}
+		j++;
+	}
+	exit(0);
+}
+
+void	error(char *str)
+{
+	printf("%s", str);
+	exit (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/23 18:14:15 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/02/02 13:34:44 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_strings
 	char	*str_aux;
 }	t_strings;
 
-void	ft_wait_for_input(char **env, int status);
+void	ft_wait_for_input(char **env, int status, char *homepath);
 char	*check_str(char *str);
 void	ft_error(char *str, char *straux);
 char	**ft_split_pipe(char const *s, char c);
@@ -53,7 +53,7 @@ void	*ft_calloc(size_t count, size_t size);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(const char *s1, char const *s2);
 size_t	ft_strlen(const char *s);
-void	ft_create_history(char	*input);
+void	ft_create_history(char	*input,char *homepath);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_read_history(void);
@@ -64,15 +64,15 @@ char	**search_files(char *str);
 char	*search_redirection(char *straux);
 void	hello_norminette(char **str, char const *s, int **i, int *a);
 char	**ft_clean_quotes(char **files);
-char	**ft_builtins(t_all *head, char **env);
+void	ft_builtins(t_all *head, char **env);
 void	ft_echo(char **str);
 char	**ft_cd(char **cmds, char **env);
 char	*get_pwd(void);
 void	ft_ls(char **cmds);
-char	**ft_export(char **cmds, char **env);
+void	ft_export(char **cmds, char **env);
 int		count_str(char **matrix);
 int		ft_comp_var(char *cmds, char **env);
-char	**ft_unset(char **cmds, char **env);
+void	 ft_unset(char **cmds, char **env);
 char	**search_cmds(char *str);
 int		ft_comp_var(char *cmds, char **env);
 char	*ft_dollar(char *input, char **env);
@@ -85,4 +85,15 @@ char	**copy_str_matrix(char **env, char *str, int a);
 int		search_files42(char *str);
 char	*ft_str_copy_num(char *str, int n);
 char	*ft_strjoin_n(char *str1, char *str2, int n);
+
+void	exe(t_all *first, char **envp);
+void	execmd(t_all *first, char **envp);
+void	redirections(t_all *first, char **envp);
+int		is_builtin(char *command);
+char	*get_path(char *cmd, char *envp[]);
+void	error (char *str);
+char	*ft_homepath(char **env);
+void	pipex(t_all *first, char **envp);
+void	ft_slave1(t_all *head, int pip[2], char *envp[]);
+void	ft_slave2(t_all *head, int pip[2], char *envp[]);
 #endif

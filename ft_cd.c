@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:29 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/17 17:37:38 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:58:57 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ char	**change_env(char **env, char *newpath, char *path)
 	while (env[i])
 	{
 		if (ft_strncmp(env[i], "PWD=", 4) == 0)
-			env[i] = ft_strjoin("PWD=", newpath);
+			env[i] = ft_strjoinm("PWD=", newpath);
 		else if (ft_strncmp(env[i], "OLDPWD=", 4) == 0)
-			env[i] = ft_strjoin("OLDPWD=", path);
+			env[i] = ft_strjoinm("OLDPWD=", path);
 		i++;
 	}
 	chdir(newpath);
@@ -45,7 +45,6 @@ char	*cd_normal(char **cmds, char *path)
 		free(newpath);
 		newpath = aux;
 	}
-	free(path);
 	fd = open(newpath, O_DIRECTORY | O_RDONLY);
 	if (fd <= 0)
 		return (NULL);
@@ -99,7 +98,6 @@ char	**ft_cd(char **cmds, char **env)
 		newpath = cd_normal(cmds, path);
 	if (newpath)
 		env = change_env(env, newpath, path);
-	free(path);
 	free(newpath);
 	return (env);
 }

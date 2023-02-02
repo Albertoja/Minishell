@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:11:38 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/17 17:45:42 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/27 12:01:04 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**ft_delete_str_matrix(char **matrix, int col)
 	return (ret);
 }
 
-char	**ft_unset(char **cmds, char **env)
+void	ft_unset(char **cmds, char **env)
 {
 	int	cont;
 	int	col;
@@ -50,5 +50,4 @@ char	**ft_unset(char **cmds, char **env)
 		cont++;
 		write(1, "a\n", 2);
 	}
-	return (env);
 }
