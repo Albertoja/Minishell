@@ -51,25 +51,29 @@ void	redirections(t_all *first, char **envp)
 	int		fd;
 	char	*path;
 
-	if (first->dir[0] == '2')
-	{
-		fd = open(first->files[0], O_CREAT | O_RDWR | O_TRUNC, 0644);
-		if (fd == -1)
-			error("Error: Can Not Read the Output File");
-		dup2(fd, STDOUT_FILENO);
-		path = get_path(first->cmds[0], envp);
-		execve(path, &first->cmds[0], envp);
-		close(fd);
-	}
-	else if (first->dir[0] == '1')
+	if (first->dir[0] == '1')
 	{
 		fd = open(first->files[0], O_RDONLY, 0644);
 		if (fd == -1)
 			error("Error: Can Not Read the Input File");
-		dup2(fd, STDIN_FILENO);
+		dup2(fd, 0);
 		path = get_path(first->cmds[0], envp);
 		execve(path, &first->cmds[0], envp);
 		close(fd);
+	}
+	else if (first->dir[0] == '2')
+	{
+		fd = open(first->files[0], O_CREAT | O_RDWR | O_TRUNC, 0644);
+		if (fd == -1)
+			error("Error: Can Not Read the Output File");
+		dup2(fd, 1);
+		path = get_path(first->cmds[0], envp);
+		execve(path, &first->cmds[0], envp);
+		close(fd);
+	}
+	else if (first->dir[0] == '3')
+	{
+		printf("HEREDOC nu lo hice :(");
 	}
 	else if (first->dir[0] == '4')
 	{
@@ -80,10 +84,6 @@ void	redirections(t_all *first, char **envp)
 		path = get_path(first->cmds[0], envp);
 		execve(path, &first->cmds[0], envp);
 		close(fd);
-	}
-	else if (first->dir[0] == '3')
-	{
-		printf("HEREDOC nu lo hice :(");
 	}
 }
 

@@ -44,3 +44,17 @@ echo "Learn bash programming" | cat > test.txt
 la
 echo "Learn bash programming" | cat > test.txt
 ls
+echo hola
+echo "Learn bash programming" | cat > test.txt
+echo "Learn bash programming" | cat > test.txt
+echo "Learn bash programming" | cat > test.txt
+exit
+echo "Learn bash programming" | cat > test.txt
+echo "Learn bash programming" | cat > test.txt
+echo "Learn bash programming" | cat > test.txt
+echo hola > test | echo adios > pene
+echo hola > test | echo adios > pene
+echo hola > test | echo adios > pene
+echo hola > test | echo adios > pene
+echo hola > test | echo adios > pene
+echo hola > test | echo adios > pene
