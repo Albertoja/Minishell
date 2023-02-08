@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:59 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/27 11:58:20 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/06 16:19:12 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,8 @@ void	ft_wait_for_input(char **env, int status, char *homepath)
 	t_all	*head;
 	char	**matrix;
 	char	*input;
-	int		pip[2];
 
 	status = 0;
-	pip[0] = 0;
-	pip[1] = 0;
 	while (1)
 	{
 		input = readline(RED"M"BLUE"i"GREEN"n"GRAY"i"PURPLE"s"CYAN"h"WHITE"e"YELLOW"ll"RESET" $>");

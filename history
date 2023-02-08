@@ -44,17 +44,84 @@ echo "Learn bash programming" | cat > test.txt
 la
 echo "Learn bash programming" | cat > test.txt
 ls
-echo hola
-echo "Learn bash programming" | cat > test.txt
-echo "Learn bash programming" | cat > test.txt
-echo "Learn bash programming" | cat > test.txt
+ls -l | more
+ls -l | more
+ls
+ls -l | more
 exit
-echo "Learn bash programming" | cat > test.txt
-echo "Learn bash programming" | cat > test.txt
-echo "Learn bash programming" | cat > test.txt
-echo hola > test | echo adios > pene
-echo hola > test | echo adios > pene
-echo hola > test | echo adios > pene
-echo hola > test | echo adios > pene
-echo hola > test | echo adios > pene
-echo hola > test | echo adios > pene
+ls -l | more
+ls
+more
+exit
+cat file.txt | head -7
+had -7
+head -7
+cat file.txt | head -7
+eit
+cat file.txt | head -7
+exit
+echo hola > file
+echo alan
+echo alan > file
+echo alan >file
+echo alan >file
+echo alan >file
+echo alan >file
+echo alan >file
+echo alan >file
+echo alan > file
+echo alan > file
+echo alan > file
+echo alan > file
+echo alan > file
+echo alan > file
+echo alan > file
+echo alan > file
+echo alan > file
+make fclean
+echo alan > file
+echo "helo madafaka" > file
+echo "helo madafaka" > file
+wc -l < users
+wc -l < file
+wc -l < file
+wc -l < file
+exit
+echo masmasmasmas >> file 
+echo hola
+make fclean
+exit
+echo masmasmasmas >> file
+echo masmasmasmas > file
+wc -l < file
+exit
+exit
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+cat << ?
+ls
+cat file
+CAT file
+cat file | head -4
+cat file | head -4
+exit
+cat file | head -4
+exit
+cat file | head -4
+cat file | head -4
+exit
+cat file | head -4
+echo hola
+echo hola | echo adios
+echo hola > f1
+cat f1
+exit

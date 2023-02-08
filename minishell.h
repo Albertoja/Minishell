@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/02 13:34:44 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/06 17:10:30 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,4 +96,8 @@ char	*ft_homepath(char **env);
 void	pipex(t_all *first, char **envp);
 void	ft_slave1(t_all *head, int pip[2], char *envp[]);
 void	ft_slave2(t_all *head, int pip[2], char *envp[]);
+void	inputredirection(t_all *first, char **envp);
+void	outputredirection(t_all *first, char **envp);
+void	outputappendredirection(t_all *first, char **envp);
+void	heredoc(t_all *first, char **envp);
 #endif
