@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   new_check_dollar.c                                 :+:      :+:    :+:   */
+/*   ft_check_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:45:41 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/19 19:36:46 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:29:52 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*search_line_env(char *str, char **env)
 	return (ft_strdup(" "));
 }
 
-char	*elim_dollar_putequal_str(char *str, char **env)
+char	*elim_dollar_putequal_str(char *str, char **env, int status)
 {
 	char	*ret;
 	int		a;
@@ -90,10 +90,12 @@ char	*elim_dollar_putequal_str(char *str, char **env)
 	if (ret[a] && ret)
 		a++;
 	ret[a] = '\0';
+	if(ft_strncmp(ret, "?=", ft_strlen(ret)) == 0)
+		return(ft_itoa(status));
 	return (search_line_env(ret, env));
 }
 
-char	*ft_dollar_sust_str(char *str, char **env)
+char	*ft_dollar_sust_str(char *str, char **env, int status)
 {
 	t_strings	st;
 	int			cont;
@@ -108,7 +110,7 @@ char	*ft_dollar_sust_str(char *str, char **env)
 			st.ret = ft_strjoin_n(st.ret, st.str_aux, cont);
 			while (*st.str_aux && *st.str_aux != '$')
 				st.str_aux++;
-			st.var = elim_dollar_putequal_str(st.str_aux++, env);
+			st.var = elim_dollar_putequal_str(st.str_aux++, env, status);
 			while (*st.str_aux && *st.str_aux != 32 && *st.str_aux != 34
 				&& *st.str_aux != 39 && *st.str_aux != 36)
 				st.str_aux++;

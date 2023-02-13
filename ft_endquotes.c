@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:52:36 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/10 19:14:43 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/02/13 17:10:15 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,21 @@ char	*ft_endquotes(char *oldinput, char a)
 	int		i;
 
 	i = 0;
+	g_interactive = 2;
 	while (1)
 	{
 		input = readline(YELLOW">"RESET);
+		if(!input)
+		{
+			if (g_interactive == 2)
+			{
+				printf("> minishell: unexpected EOF while looking for matching `\"'\n");
+				printf("minishell: syntax error: unexpected end of file\n");
+				return (ft_strdup(""));
+			}
+			if (g_interactive == 3)
+				return (ft_strdup(""));
+		}
 		if (input && *input)
 		{
 			input = search_a(input, a);

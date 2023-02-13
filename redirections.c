@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:42:44 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/06 17:26:29 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/08 17:31:00 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	heredoc(t_all *first, char **envp)
 	pid = fork();
 	if(pid == 0)
 	{
+		g_interactive = 2;
 		fd = open("/tmp/file1", O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
 		while(1)
 		{

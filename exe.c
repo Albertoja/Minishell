@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exe.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/06 18:05:05 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:15:52 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exe(t_all *first, char **envp)
+int	exe(t_all *first, char **envp, int status)
 {
 	if (!first->next->cmds)
 	{
 		if (!first->dir)
 		{
 			if (is_builtin(first->cmds[0]) == 1)
-				ft_builtins(first, envp);
+				status = ft_builtins(first, envp, status);
 			else
 				execmd(first, envp);
 		}
@@ -28,8 +28,9 @@ void	exe(t_all *first, char **envp)
 	}
 	else
 	{
-		pipex(first, envp);
+		status = pipex(first, envp, status);
 	}
+	return(status);
 }
 
 void	execmd(t_all *first, char **envp)
@@ -60,6 +61,8 @@ void	redirections(t_all *first, char **envp)
 
 int	is_builtin(char *command)
 {
+	if (!command)
+		return(0);
 	if (ft_strncmp(command, "echo", 10) == 0)
 		return (1);
 	if (ft_strncmp(command, "cd", 10) == 0)

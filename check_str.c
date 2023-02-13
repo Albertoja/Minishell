@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:44 by aespinos          #+#    #+#             */
-/*   Updated: 2022/12/20 18:01:45 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:10:29 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ char	*check_str(char *str)
 	int	aux;
 
 	aux = 0;
+	if (!str)
+		return(NULL);
 	while (str[aux])
 	{
 		if (str[aux] == 34)

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:13:02 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/06 18:04:37 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:16:10 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	pipex(t_all *head, char **envp)
+int	pipex(t_all *head, char **envp, int status)
 {
 	t_all	*first = head;
 	t_all	*second = head->next;
@@ -30,7 +30,7 @@ void	pipex(t_all *head, char **envp)
 	{
 		dup2(pip[1], 1);
 		close(pip[0]);
-		exe(first, envp);
+		exe(first, envp, status);
 	}
 	slave2 = fork();					//doubles forks when going again on exe
 	if(slave2 < 0)
@@ -39,11 +39,11 @@ void	pipex(t_all *head, char **envp)
 	{
 		dup2(pip[0], 0);
 		close(pip[1]);
-		exe(second, envp);
+		exe(second, envp, status);
 	}
 	close(pip[0]);
 	close(pip[1]);
 	waitpid(slave1, NULL, 0);
 	waitpid(slave2, NULL, 0);
-	
+	return(status);
 }

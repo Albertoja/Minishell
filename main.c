@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:50 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/06 12:32:35 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:47:22 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 // {
 //     system("leaks minishell");
 // }
+
+int	g_interactive = 0;
 
 int	count_str(char **matrix)
 {
@@ -55,6 +57,8 @@ int	main(int argc, char *argv[], char *envp[])
 	status = 0;
 	env = copy_matrix(envp);
 	ft_read_history();
+	no_ctrlprint();
+	signals_handlers();
 	ft_wait_for_input(env, status,ft_homepath(env));
 	ft_free_matrix(env);
 }
