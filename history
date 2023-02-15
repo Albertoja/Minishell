@@ -1,0 +1,41 @@
+echo hola
+echo hola | adios
+b
+exit
+echo hola | adios
+echo hola | echo adios
+echo hola | echo adios
+echo hola
+echo hola | echo adios
+echo hola | echo adios
+echo hola | cat >file
+echo hola | pwd
+pwd
+echo hola |
+exit 25
+exit 25
+exit -25
+exit -25
+echo "kfjso
+echo "kfjso
+echo "kfjso
+
+
+ 
+echo "kfjso
+ 
+ 
+ 
+echo "kfjso
+echo hola
+echo hola | echo adios
+ 
+echo hola | echo adios
+echo hola | echo
+echo hola |
+echo hola ||
+
+
+echo hola ||
+echo hola |
+exit

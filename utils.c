@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_matrix.c                                     :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 18:21:53 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/03 18:10:30 by aespinos         ###   ########.fr       */
+/*   Created: 2022/10/25 17:53:17 by aespinos          #+#    #+#             */
+/*   Updated: 2023/01/27 11:16:52 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_print_matrix(char **matrix)
+char	*ft_homepath(char *env[])
 {
-	int	i;
+	int		j;
+	char	*homepath;
 
-	i = 0;
-	if (!matrix)
-		return (1);
-	while (matrix[i])
-	{
-		ft_putstr_fd(matrix[i++], 1);
-		ft_putchar_fd('\n', 1);
-	}
-	return (0);
+	j = 0;
+	while (env[++j] && ft_strncmp(env[j], "OLDPWD=", 7))
+		homepath = ft_strdup(env[j]);
+	homepath = ft_strtrim(homepath, "PWD=");
+	homepath = ft_strjoinm(homepath, "/history");
+	return (homepath);
 }

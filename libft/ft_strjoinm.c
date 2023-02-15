@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strjoinm.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/07 16:55:59 by aespinos          #+#    #+#             */
-/*   Updated: 2022/12/01 19:42:04 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:52:07 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(const char *s1, char const *s2)
+char	*ft_strjoinm(const char *s1, char const *s2)
 {
 	size_t	i;
 	size_t	k;
@@ -37,6 +37,5 @@ char	*ft_strjoin(const char *s1, char const *s2)
 		i++;
 	}
 	str[i] = '\0';
-	free((void *)s1);
 	return (str);
 }

@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/01 18:18:06 by aespinos          #+#    #+#             */
-/*   Updated: 2022/10/24 18:52:48 by aespinos         ###   ########.fr       */
+/*   Created: 2022/02/02 17:21:40 by aespinos          #+#    #+#             */
+/*   Updated: 2022/11/28 19:45:03 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-t_all	*ft_lstlast(t_all *lst)
-{
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
+// void	ft_lstclear(t_all **lst)
+// {
+// 	t_all	*temp;
+
+// 	if (!*lst)
+// 		return ;
+// 	while (*lst)
+// 	{
+// 		temp = (*lst)->next;
+// 		free(*lst);
+// 		*lst = temp;
+// 	}
+// 	*lst = NULL;
+// }
