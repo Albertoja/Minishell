@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_strjoin_n.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/01 18:18:06 by aespinos          #+#    #+#             */
-/*   Updated: 2022/10/24 18:52:48 by aespinos         ###   ########.fr       */
+/*   Created: 2023/01/19 19:36:07 by aespinos          #+#    #+#             */
+/*   Updated: 2023/01/19 19:36:08 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"minishell.h"
 
-t_all	*ft_lstlast(t_all *lst)
+char	*ft_strjoin_n(char *str1, char *str2, int n)
 {
-	if (!lst)
-		return (NULL);
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
+	int		cont;
+	char	*ret;
+	char	*aux;
+
+	cont = 0;
+	aux = malloc(sizeof(char) * (n + 1));
+	while (n--)
+	{
+		aux[cont] = str2[cont];
+		cont++;
+	}
+	aux[cont] = '\0';
+	if (!str1)
+		return (aux);
+	ret = ft_strjoin(str1, aux);
+	free (aux);
+	return (ret);
 }
