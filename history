@@ -1,0 +1,30 @@
+export HOLI=HOLI
+env
+UNSET HOLI
+unset HOLI
+exit
+echo hola
+echo $?
+eecho hola
+echo $?
+echo hola ; echo adios
+cd .. ; cd '/Users/magonzal/Desktop/minishits'
+pwd
+
+cd "/Users/mario/Desktop/"
+echo "garfggdsf "
+export HOLI=HOLI
+env
+export HOLI=4
+env
+exit
+echo holaa > test > test2
+ls
+cat test
+echo holaa > test > test2
+echo holaa > test > test2 | echo hola > erte
+exit
+cat gfgssf 
+catt fasd
+echo $?
+exit
