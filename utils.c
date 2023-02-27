@@ -3,24 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:53:17 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/27 11:16:52 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:20:52 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*ft_homepath(char *env[])
+size_t	ft_lenchar(char const *s, int c)
 {
-	int		j;
-	char	*homepath;
+	size_t	len;
 
-	j = 0;
-	while (env[++j] && ft_strncmp(env[j], "OLDPWD=", 7))
-		homepath = ft_strdup(env[j]);
-	homepath = ft_strtrim(homepath, "PWD=");
-	homepath = ft_strjoinm(homepath, "/history");
-	return (homepath);
+	len = 0;
+	if (!s)
+		return (len);
+	while (s[len] != c && s[len])
+		len++;
+	return (len);
+}
+
+char	*get_oldpwd(char **env)
+{
+	int		i;
+
+	i = -1;
+	while (env[++i])
+	{
+		if (ft_strncmp(env[i], "OLDPWD=", 7) == 0)
+			return (ft_substr(env[i], 7, UINT_MAX));
+		env++;
+	}
+	return (NULL);
 }

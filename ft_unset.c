@@ -3,14 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:11:38 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/27 12:01:04 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:24:59 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_len_equal(char *str, char a)
+{
+	int	ret;
+
+	ret = 0;
+	while (*str != a && *str != '\0')
+	{
+		ret++;
+		str++;
+	}
+	return (ret);
+}
+
+int	ft_comp_var(char *cmds, char **env)
+{
+	int	len;
+	int	ret;
+
+	ret = 0;
+	while (env[ret])
+	{
+		len = ft_len_equal(env[ret], '=');
+		if (ft_strncmp(cmds, env[ret], len) == 0)
+			return (ret);
+		ret++;
+	}
+	return (-1);
+}
 
 char	**ft_delete_str_matrix(char **matrix, int col)
 {
@@ -35,7 +64,7 @@ char	**ft_delete_str_matrix(char **matrix, int col)
 	return (ret);
 }
 
-void	ft_unset(char **cmds, char **env)
+char	**ft_unset(char **cmds, char **env)
 {
 	int	cont;
 	int	col;
@@ -44,10 +73,9 @@ void	ft_unset(char **cmds, char **env)
 	while (cmds[cont])
 	{
 		col = ft_comp_var(cmds[cont], env);
-		printf("aqui! %i", col);
 		if (col >= 0)
 			env = ft_delete_str_matrix(env, col);
 		cont++;
-		write(1, "a\n", 2);
 	}
+	return(env);
 }

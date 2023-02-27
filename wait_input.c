@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:59 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/27 18:23:00 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:22:57 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	**start_mini(char *input, int *status, char **env)
 	return (env);
 }
 
-void	ft_wait_for_input(char **env, char *homepath)
+void	ft_wait_for_input(char **env)
 {
 	int			std[2];
 	char		*input;
@@ -54,7 +54,7 @@ void	ft_wait_for_input(char **env, char *homepath)
 		printf("status = %i\n", *status);
 		if (!input)
 			no_input_signal();
-		ft_create_history(input, homepath);
+		ft_create_history(input);
 		input = check_str(input);
 		if (!input)
 			*status = 1;

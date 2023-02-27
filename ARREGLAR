@@ -11,14 +11,6 @@
 
 	Terminar senales y probar con el promt vacio y con cosas escritas
 
-> COMILLAS DOBLES:
-
-	Problema por ejemplo en cd al mandar la ruta entre dobles comillas.
-
-	Minishell $>cd "/Users/mario/Desktop/"
-	# Salta el Sanitizer attempting double-free #
-
-
 PARA REVISAR :
 
 	https://www.youtube.com/watch?v=DAkCD6CsEFI&ab_channel=SardorTukhtakhodjaev

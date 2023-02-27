@@ -5413,3 +5413,231 @@ exit
  cat << ??
 [Abuob
 exit
+cd #include "minishell.h"
+
+int	ft_len_equal(char *str, char a)
+{
+	int	ret;
+
+	ret = 0;
+	while (*str != a && *str != '\0')
+	{
+		ret++;
+		str++;
+	}
+	return (ret);
+}
+
+int	ft_comp_var(char *cmds, char **env)
+{
+	int	len;
+	int	ret;
+
+	ret = 0;
+	while (env[ret])
+	{
+		len = ft_len_equal(env[ret], '=');
+		if (ft_strncmp(cmds, env[ret], len) == 0)
+			return (ret);
+		ret++;
+	}
+	return (-1);
+}
+
+char	**ft_delete_str_matrix(char **matrix, int col)
+{
+	char	**env;
+	char	**ret;
+
+	if (!matrix)
+		return (NULL);
+	env = malloc(sizeof(char *) * (count_str(matrix)));
+	if (!env)
+		return (NULL);
+	ret = env;
+	while (*matrix)
+	{
+		if (col == 0)
+			matrix++;
+		if (*matrix)
+			*env++ = ft_strdup(*matrix++);
+		col--;
+	}
+	*env = NULL;
+	return (ret);
+}
+
+char	**ft_unset(char **cmds, char **env)
+{
+	int	cont;
+	int	col;
+
+	cont = 1;
+	while (cmds[cont])
+	{
+		col = ft_comp_var(cmds[cont], env);
+		if (col >= 0)
+			env = ft_delete_str_matrix(env, col);
+		cont++;
+	}
+	return(env);
+}
+cd "/Users/aespinos/Desktop/"
+cd "/Users/aespinos/Desktop/"
+export a
+export
+env
+export a=2
+env
+export a=2
+export a=2
+export a=3
+export a=3
+export a
+export v
+export v=1
+export v=1
+export v=2
+export v
+export a=2=2
+export
+export
+export
+export a
+export a
+export a
+export a
+export a
+export a
+export a
+export a
+export a
+export a
+export a
+make
+make
+export a
+export a
+export
+export
+export a=2
+export
+make
+export
+export
+exit
+export
+unset a
+export
+export a=2
+export
+export a=3
+export
+export a=3
+export a=3
+export
+unset a
+export
+exit
+export
+export a=3
+export
+export a=2
+export
+exit
+export
+export a=2
+export a=2
+export a=2
+export a=2
+
+export a=2
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export a=3
+export
+export aaaa=2
+export aaaa=2
+make
+export aaaa=2
+export aaaa=2
+export aaaa=2
+export aaaa=2
+export aaaa=2
+export aaaa=243
+make
+export aaaa=243
+export aaaa=243
+export aaaa=243
+export aaaa=243
+export aaaa=243
+export aaaa=243
+export
+export
+export aaaa=243
+export aaaa=243
+export
+export aaaa=2
+export
+export
+export aaaa=2
+export
+export
+export aaaa=2
+export
+export aaaa=24
+export
+export
+exit
+export a=2
+export
+exit
+export a=2
+export a=2
+export a=2
+export
+export
+exit
+export
+export a=2
+export
+exit
+export
+export a=2
+export a=3
+export
+exit
+export a
+export
+export
+export a
+export
+export a=2
+export
+export a
+export
+exit

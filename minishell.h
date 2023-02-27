@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/27 18:19:43 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 20:32:58 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,11 @@ int		search_files42(char *str);
 size_t	ft_linelen(const char *line);
 size_t	ft_strlen(const char *s);
 t_all	*ft_create_lst(char **matrix);
-void	ft_unset(char **cmds, char **env);
+char	**ft_unset(char **cmds, char **env);
 void	*ft_calloc(size_t count, size_t size);
 void	error(char *str);
 void	execmd(t_all *first, char **envp, int *status);
-void	ft_create_history(char *input, char *homepath);
+void	ft_create_history(char *input);
 void	ft_error(char *str, char *straux);
 void	ft_ls(char **cmds);
 void	ft_putchar_fd(char c, int fd);
@@ -100,7 +100,7 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_read_history(void);
 void	ft_slave1(t_all *head, int pip[2], char *envp[]);
 void	ft_slave2(t_all *head, int pip[2], char *envp[]);
-void	ft_wait_for_input(char **env, char *homepath);
+void	ft_wait_for_input(char **env);
 void	handler_ctrlc(int sig);
 void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip);
 void	hello_norminette(char **str, char const *s, int **i, int *a);
@@ -114,4 +114,7 @@ void	rl_replace_line(char *s, int a);
 void	signals_handlers(void);
 void	signals_handlers_default(void);
 char	*ft_endpipe(char *oldinput);
+size_t	ft_lenchar(char const *s, int c);
+char	*get_oldpwd(char **env);
+char	*ft_putquotes_export(char *str);
 #endif

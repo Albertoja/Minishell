@@ -30,6 +30,7 @@ SRCS	= 	builtins.c \
 			split_pipe.c \
 			utils.c \
 			wait_input.c \
+			ft_export2.c \
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -39,7 +40,7 @@ CC	= gcc
 
 RM	= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address
 
 LIBFT = libft/libft.a
 

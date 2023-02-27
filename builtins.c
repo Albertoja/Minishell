@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:51:39 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/27 16:48:07 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 19:25:48 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,13 @@ char	**ft_builtins(t_all *head, char **env, int *status)
 	else if (ft_strncmp(head->cmds[0], "echo", 10) == 0)
 		*status = ft_echo(head->cmds);
 	else if (ft_strncmp(head->cmds[0], "cd", 10) == 0)
-		ft_cd(head->cmds, env);
+		env = ft_cd(head->cmds, env);
 	else if (ft_strncmp(head->cmds[0], "env", 10) == 0)
 		ft_print_matrix_env(env);
 	else if (ft_strncmp(head->cmds[0], "export", 10) == 0)
 		env = ft_export(head->cmds, env);
 	else if (ft_strncmp(head->cmds[0], "unset", 10) == 0)
-		ft_unset(head->cmds, env);
+		env = ft_unset(head->cmds, env);
 	else
 		ft_error("command not found", head->cmds[0]);
 	return (env);
