@@ -18,6 +18,7 @@ SRCS	= 	builtins.c \
 			get_next_line.c\
 			get_next_line_aux.c\
 			get_pwd.c\
+			heredoc.c\
 			main.c \
 			pipex.c \
 			print_matrix.c \

@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:53:55 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/27 15:15:36 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 15:37:12 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ t_all	*ft_parse(char **matrix, int *cont)
 	if (matrix[++(*cont)])
 	{
 		head = ft_basic_parse(matrix[*cont], head);
-		printf("redireccion:%s\n", head->dir);
-		printf("Comandos:\n");
-		ft_print_matrix(head->cmds);
-		printf("Archivos:\n");
-		ft_print_matrix(head->files);
-		printf("-------------------\n");
+		// printf("redireccion:%s\n", head->dir);
+		// printf("Comandos:\n");
+		// ft_print_matrix(head->cmds);
+		// printf("Archivos:\n");
+		// ft_print_matrix(head->files);
+		// printf("-------------------\n");
 	}
 	return (head);
 }

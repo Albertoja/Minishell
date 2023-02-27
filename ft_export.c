@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:38:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/27 11:43:01 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:50:12 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ char	**copy_str_matrix(char **env, char *str, int a)
 	return (new_env);
 }
 
-void	ft_export(char **cmds, char **env)
+char	**ft_export(char **cmds, char **env)
 {
 	int	cont;
 	int	cop;
@@ -89,7 +89,7 @@ void	ft_export(char **cmds, char **env)
 	{
 		while (env[++cont])
 			printf("declare -x %s\n", env[cont]);
-		return ;
+		return (env);
 	}
 	cont = 1;
 	while (cmds[cont])
@@ -103,4 +103,5 @@ void	ft_export(char **cmds, char **env)
 		env = copy_str_matrix(env, cmds[cont], cop);
 		cont++;
 	}
+	return (env);
 }

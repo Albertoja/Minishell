@@ -2,24 +2,10 @@
 
 	Solo faltan errores de norma de +25 lineas y comentarios;
 
-> RETURN STATUS :
-
-	NO devuelve el status del ultimo comando. Problema en start_mini()??
-
-		-Minishell $>/bin/cat exee
-		-cat: exee: No such file or directory
-		-Minishell $>echo $?
-		-0
-
-		-bash-3.2$ /bin/cat exee
-		-cat: exee: No such file or directory
-		-bash-3.2$ echo $?
-		-1
 
 > HEREDOC :
 
 	Se cierra el heredoc por que "no hay input" posible problema en 
-
 
 > SEÑALES:
 
@@ -32,18 +18,6 @@
 	Minishell $>cd "/Users/mario/Desktop/"
 	# Salta el Sanitizer attempting double-free #
 
-> PROBLEMA CON EL EXPORT y UNSET??
-
-	Quizas sea en mi ordenador probar en 42.
-	Con UNSET sale un print de debugueo.
-
-> PROBLEMA CON DOBLES REDIRECCIONES PARSEO Y COMO GUARDAMOS EN LA ESTRUCTURA ESTA MAL?
-
-	Minishell $>echo test > ts > tss
-	Minishell $>cat ts
-	test
-	Minishell $>cat tss
-	cat: tss: No such file or directory	
 
 PARA REVISAR :
 

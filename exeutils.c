@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:44:07 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/25 17:19:04 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 17:33:41 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,4 @@ char	*get_path(char *cmd, char *envp[])
 		j++;
 	}
 	return (NULL);
-}
-
-void	error(char *str)
-{
-	printf("%s", str);
-	exit (1);
 }

@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:45:41 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/25 17:19:26 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:52:41 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ char	*elim_dollar_putequal_str(char *str, char **env, int status)
 	return (search_line_env(ret, env));
 }
 
-char	*ft_dollar_sust_str(char *str, char **env, int status)
+char	*ft_dollar_sust_str(char *str, char **env, int *status)
 {
 	t_strings	st;
 	int			cont;
@@ -110,7 +110,7 @@ char	*ft_dollar_sust_str(char *str, char **env, int status)
 			st.ret = ft_strjoin_n(st.ret, st.str_aux, cont);
 			while (*st.str_aux && *st.str_aux != '$')
 				st.str_aux++;
-			st.var = elim_dollar_putequal_str(st.str_aux++, env, status);
+			st.var = elim_dollar_putequal_str(st.str_aux++, env, *status);
 			while (*st.str_aux && *st.str_aux != 32 && *st.str_aux != 34
 				&& *st.str_aux != 39 && *st.str_aux != 36)
 				st.str_aux++;

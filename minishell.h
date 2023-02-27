@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/25 19:38:45 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 18:19:43 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,13 @@ char	**search_cmds(char *str);
 char	**search_files(char *str);
 char	*check_str(char *str);
 char	*copy_no_quotes(char *str);
+int		ft_echo(char **str);
 char	*elim_dollar_putequal(char *str);
+char	**exe(t_all *first, char **envp, int *status);
 char	*ft_dollar(char *input, char **env);
-char	*ft_dollar_sust_str(char *str, char **env, int status);
+char	*ft_dollar_sust_str(char *str, char **env, int *status);
 char	*ft_endquotes(char *input, char a);
+char	**ft_export(char **cmds, char **env);
 char	*ft_homepath(char **env);
 char	*ft_str_copy_num(char *str, int n);
 char	*ft_strchr(const char *s, int c);
@@ -73,19 +76,14 @@ char	*get_pwd(void);
 char	*search_line_env(char *str, char **env);
 char	*search_redirection(char *straux);
 int		count_str(char **matrix);
-int		exe(t_all *first, char **envp, int status);
-int		execmd(t_all *first, char **envp);
-int		ft_builtins(t_all *head, char **env, int status);
+char	**ft_builtins(t_all *head, char **env, int *status);
 int		ft_comp_var(char *cmds, char **env);
 int		ft_comp_var(char *cmds, char **env);
 int		ft_print_matrix(char **matrix);
-int		heredoc(t_all *first, char **envp);
-int		inputredirection(t_all *first, char **envp);
+void	heredoc(t_all *first, char **envp, int *status);
 int		is_builtin(char *command);
 int		outputappendredirection(t_all *first, char **envp);
-int		outputredirection(t_all *first, char **envp);
-int		pipex(t_all *first, char **envp);
-int		redirections(t_all *first, char **envp);
+void	outputredirection(t_all *first, char **envp, int *status);
 int		search_files42(char *str);
 size_t	ft_linelen(const char *line);
 size_t	ft_strlen(const char *s);
@@ -93,20 +91,25 @@ t_all	*ft_create_lst(char **matrix);
 void	ft_unset(char **cmds, char **env);
 void	*ft_calloc(size_t count, size_t size);
 void	error(char *str);
+void	execmd(t_all *first, char **envp, int *status);
 void	ft_create_history(char *input, char *homepath);
-void	ft_echo(char **str);
 void	ft_error(char *str, char *straux);
-void	ft_export(char **cmds, char **env);
 void	ft_ls(char **cmds);
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_read_history(void);
 void	ft_slave1(t_all *head, int pip[2], char *envp[]);
 void	ft_slave2(t_all *head, int pip[2], char *envp[]);
-void	ft_wait_for_input(char **env, int status, char *homepath);
+void	ft_wait_for_input(char **env, char *homepath);
 void	handler_ctrlc(int sig);
+void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip);
 void	hello_norminette(char **str, char const *s, int **i, int *a);
+void	inputredirection(t_all *f, char **envp, int *status);
+void	outputredirection(t_all *f, char **envp, int *status);
+void	outputredirectionaux(t_all *f, char **envp, char *path, int *i);
+void	pipex(t_all *aux, char **envp, int *status);
 void	no_ctrlprint(void);
+void	redirections(t_all *first, char **envp, int *status);
 void	rl_replace_line(char *s, int a);
 void	signals_handlers(void);
 void	signals_handlers_default(void);

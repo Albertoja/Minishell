@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:13:02 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/27 15:04:52 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/27 16:50:26 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,10 @@ void	select_redirection_pipex(t_all *aux)
 	}
 }
 
-int	pipex(t_all *aux, char **envp)
+void	pipex(t_all *aux, char **envp, int *status)
 {
 	int		pip[2];
 	int		fd_in_out[2];
-	int		status;
 	int		cmdnbr[2];
 	pid_t	pid;
 
@@ -85,7 +84,7 @@ int	pipex(t_all *aux, char **envp)
 		else
 		{
 			close(pip[1]);
-			waitpid(pid, &status, 0);
+			waitpid(pid, status, 0);
 			close(fd_in_out[0]);
 			fd_in_out[0] = pip[0];
 			aux = aux->next;
@@ -95,5 +94,4 @@ int	pipex(t_all *aux, char **envp)
 	close(pip[1]);
 	close(pip[0]);
 	dup2(dup(STDOUT_FILENO), STDOUT_FILENO);
-	return (0);
 }
