@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:52:36 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 17:34:54 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:36:03 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ char	*ft_endquotes(char *oldinput, char a)
 	char		*input;
 	static int	i;
 
-	g_interactive = 2;
 	while (1)
 	{
+		g_interactive = 2;
 		input = readline(YELLOW">"RESET);
 		if (!input)
 			return (error_endquotes());

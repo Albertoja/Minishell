@@ -795,3 +795,190 @@ echo "
 exit
 
 exit
+echo $4
+echo $USER
+echo '$USER'
+echo $USER
+echo '$USER'
+echo '$USER $4'
+echo '$USER'
+echo $USER
+echo '$USER $4'
+echo '$USER $4'
+echo $USER $4
+echo $USER a
+echo '$USER $4' a
+echo '$USER $4' a
+echo '$USER $4' a
+make
+echo '$USER $4' a
+echo '$USER $4' a
+export eso=echo
+$eso hola
+echo '$USER $4' a
+echo '$USER $4' a
+echo '$USER $4' a
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' ssga
+zm
+
+echo '$USER $4' ssga
+zmake
+zmake
+echo '$USER $4' ssga
+echo '$USER $4' ssga
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo $USER %USER
+echo $USER $USER
+echo '$USER $4' $USER
+echo '$USER $4'$USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4' $USER
+echo '$USER $4'$USER
+echo '$USER $4'$USER
+echo '$USER $4'$USER
+echo 'hola'adios
+echo "hola"adios
+echo "hola"adios
+echo $
+echo a$
+echo a$
+echo $
+echo $a
+echo $USER
+echo $.
+echo $.
+echo $.
+echo $USER
+echo $USER
+echo $.
+echo $USER
+echo $
+echo $a
+echo $.
+echo $.$a
+echo $.$USER
+echo '$USER $a' $USER
+echo '$USER $a' $USER $.
+echo a$a
+echo a$.
+awk '{print $2}' prueba.txt
+awk '{print $2}' prueba.txt
+awk '{print $1}' prueba.txt
+awk '{print $1}' prueba.txt
+awk '{print $2}' prueba.txt
+exit
+awk '{print $2}' prueba.txt
+exit
+exit
+awk '{print $2}' prueba.txt
+exit
+echo $.
+exit
+echo $.
+awk '{print $2}' prueba.txt
+exit
+awk '{print $2}' prueba.txt
+echo $.
+exit
+awk '{print $2}' prueba.txt
+echo $.
+echo $a
+awk '{print $2}' prueba.txt
+echo $a
+echo $a
+echo $a
+echo $.
+echo $a
+echo $a
+echo $a
+echo $.
+make re
+echo $.
+echo $a
+awk '{print $2}' prueba.txt
+awk '{print $2}' prueba.txt
+echo $a
+echo $.
+echo $USER
+echo $USER $PWD
+echo $USER $PWD
+echo $.
+echo $a
+awk '{print $2}' prueba.txt
+awk '{print $2}' prueba.txt
+echo $a
+echo $.
+echo $USER $PWD
+echo $USER $PWD
+awk '{print $2}' prueba.txt
+exit
+awk '{print $2}' prueba.txt
+exit
+
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+make
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo "hola
+echo hola |
+echo hola |
+echo hola "hola
+
+echo hola "hola
+echo hola
+
+
+
+
+
+
+
+ 
+echo \n
+echo
+echo
+exit
+echo hola "hola
+echo hola "hola
+echo hola "hola
+echo hola "hola
+echo hola "hola

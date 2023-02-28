@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wait_input.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:59 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 17:09:02 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:39:10 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ void	ft_wait_for_input(char **env)
 	*status = 0;
 	while (1)
 	{
-		g_interactive = 1;
 		std[0] = dup(STDIN_FILENO);
 		std[1] = dup(STDOUT_FILENO);
+		g_interactive = 1;
 		input = readline(RED"M"BLUE"i"GREEN"n"GRAY"i"PURPLE"s"
 				CYAN"h"WHITE"e"YELLOW"ll"RESET" $>");
 		g_interactive = 0;

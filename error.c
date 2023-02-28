@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:46 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 17:36:03 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:29:13 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,4 +16,3 @@ void	ft_error(char *str, char *straux)
 {
 	printf("minishell: %s: %s\n", straux, str);
 }
-

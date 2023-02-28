@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 16:06:42 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:23:56 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,4 +118,8 @@ size_t	ft_lenchar(char const *s, int c);
 char	*get_oldpwd(char **env);
 char	*ft_putquotes_export(char *str);
 void	heredocpip(t_all *f, int *in_out_all_act, int *pip);
+int		ft_dollarutils01(char *str_aux, int co);
+t_strings	ft_dollarutils02(t_strings st, int *status, char **env, int co);
+char	*elim_dollar_putequal_str(char *str, char **env, int status);
+t_strings	ft_dollarutils03(t_strings st, int co);
 #endif

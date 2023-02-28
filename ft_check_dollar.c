@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_dollar.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:45:41 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 09:08:55 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/28 19:26:00 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,28 +98,28 @@ char	*elim_dollar_putequal_str(char *str, char **env, int status)
 char	*ft_dollar_sust_str(char *str, char **env, int *status)
 {
 	t_strings	st;
-	int			cont;
+	int			co;
 
+	co = -1;
 	st.str_aux = str;
 	st.ret = NULL;
-	cont = 0;
-	while (st.str_aux[cont++])
+	while (st.str_aux[++co])
 	{
-		if (st.str_aux[cont] == '$')
+		if (st.str_aux[co] == 39)
 		{
-			st.ret = ft_strjoin_n(st.ret, st.str_aux, cont);
-			while (*st.str_aux && *st.str_aux != '$')
-				st.str_aux++;
-			st.var = elim_dollar_putequal_str(st.str_aux++, env, *status);
-			while (*st.str_aux && *st.str_aux != 32 && *st.str_aux != 34
-				&& *st.str_aux != 39 && *st.str_aux != 36)
-				st.str_aux++;
-			st.ret = ft_strjoin(st.ret, st.var);
-			free(st.var);
-			cont = -1;
+			st = ft_dollarutils03(st, co);
+			co = -1;
+		}
+		if (st.str_aux[co] == '$'
+			&& ((st.str_aux[co + 1] > 47 && st.str_aux[co + 1] < 58)
+				|| (st.str_aux[co + 1] > 64 && st.str_aux[co + 1] < 91)
+				|| (st.str_aux[co + 1] > 96 && st.str_aux[co + 1] < 123)))
+		{
+			st = ft_dollarutils02(st, status, env, co);
+			co = -1;
 		}
 	}
-	st.ret = ft_strjoin_n(st.ret, st.str_aux, cont);
+	st.ret = ft_strjoin_n(st.ret, st.str_aux, co);
 	free (str);
 	return (st.ret);
 }
