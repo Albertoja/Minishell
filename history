@@ -1,0 +1,791 @@
+echo hola
+echo $?
+echoo hola
+echo $?
+echoo hola
+echo $?
+echo hola > f1 > f2
+cat f1
+cat f2
+exit
+echo hola
+echoo hola
+echoo hola
+echoo hola
+echo $?
+exit
+echo hola
+ecccho hola
+ecccho hola
+echo $?
+echo hola
+echo hola > f2
+echo holA
+echho das
+echo $?
+echo >f3
+echo >f3
+exit
+echo >f3
+echo hola
+exit
+echo hola
+echo hola > f3
+cat f3
+exit
+echo hola
+ecc hola
+ecc hola
+exit
+echo hola
+ecch hola
+echo hola > f3
+cat f3
+exit
+echo hola
+ecch hola
+echo hola > f3
+cat f3
+exit
+echo hola
+echh hola
+echo hola > f3
+cat f3
+exit
+echo hola
+echh hol
+ecHO HOLA > f3
+cat f3
+exit
+echo hola
+echh hola
+exit
+echo hola 
+echho hola
+echo hola > f1 > f2
+cat f1
+cat f2
+exit
+echo hola
+exit
+echo hola
+echo adios > f1 > f2
+exccch hola
+exit
+echo hola
+ecchu gsd
+ecchu gsd
+exit
+echo hola
+echo holA > f1
+echo hola
+ecdsa df
+awk {print'hoLa'}
+awk{ print'hoLa'}
+awk { print'hoLa'}
+echo hola
+asdf
+exit
+echo hola
+echdasf adios
+sad
+echo hola
+eadsd sdf
+sad d
+dsa sd
+asdf
+dsa sd
+echo hola
+sfad 
+echo hol > D
+echo hol > D
+DSA
+asD
+Asd
+sad
+echo hola > f
+exit
+saf
+asdf
+sdaf
+fsadf
+exit
+dsf
+echo hola
+
+asdf
+echo hola
+fasd
+fdsa
+echo hola
+sad
+exit
+echo hola
+exit
+echo hola > f2
+exit
+echo hola > f2
+exit
+echo hola
+exit
+echo hola > f3
+cat f3
+exit
+echo hola
+exit
+ecsa 
+exit
+echo hola > ff
+cat ff
+exit
+asd
+asD
+EXIT
+exit
+asDsd
+asfd
+asfd
+asdf
+exit
+echo hola > f3
+cat f3
+echo hola > f3
+echo holaaaaa > f3
+cat f3
+exit
+echo hola
+exit
+echo hola > ff
+echo hola > ff
+echo hola > ff
+echo hola > ff
+exit
+echo hola
+asd
+asdF
+asdf
+asdFA
+ASDF
+echo hola
+exit
+echo hola > f4
+asdf
+ECHO HOLA > EE
+echo hola > gg
+sdaf
+dsaf
+asdf
+asdf
+sadf
+asdf
+adfsda
+exit
+asdf
+asdf
+exit
+asdf
+asdff
+asga
+ fdg
+fddga
+df
+exit
+dasf
+adsf
+asdf
+dsf
+exit
+exitas
+dsf
+sdf
+asdf
+exit
+afsd
+asdf
+asdf
+exit
+echo hola
+echo hola > ff
+echo hola > ff
+asD
+asd
+asD
+EXIT
+exit
+echo hola > ff
+echo hola
+ cat fds
+ cat fds
+echo hola > 3
+exit
+echo hola > 3
+exit
+echo hola > 3
+cat 3
+sfd
+exit
+echo hola
+exit
+echo hola 
+cat 3
+cat 3
+echo hola
+echo hola > f4
+cat f4
+eads
+exit
+echo hola
+sdaf
+exit
+fdsa
+asfd
+exit
+ASDF
+ASDF
+ADSF
+EXIT
+exit
+echo hola
+echo adios > sluw
+car sluw 
+cat sluw
+exit
+echo hola
+cat sluw
+echo hola
+asfd
+adsf
+echo hola > safds
+cat asd
+cat wait_input.c
+cat wait_input.c
+cat wait_input.c
+cat wait_input.c
+exit
+cat ft_cd.c
+cat ft_cd.c
+cat ft_cd.c
+exit
+cat ft_cd.c
+exit
+exit
+cat f3
+exit
+cat f3
+cat f3
+echo hola > f5
+gsrsfd
+dfsgg
+asfgdfg
+ fdf
+fd fgdsgsd  rgfsd
+exit
+afdsas
+asdfas
+dfasdfasd
+fasdf
+exit
+sdafas
+asdfasdf
+df
+awdgfasd
+gadgasd
+fgdfg
+df
+dfgfdg
+fgdgf
+jhgyuyt
+exit
+tyrerety
+tryutruy
+tryutyr
+tytuyryrt
+exit
+echo hola
+ps
+ps
+ps
+ps
+exit
+exit
+echo hola
+echo hola > f4
+ps
+ps
+ps
+echo hola > f4
+l
+ls
+exi
+exit
+echo hola
+ps
+exit
+ps
+echo hola
+exit
+echo hola
+ps
+echo hola > f4
+cat f4
+exit
+ps
+echo hola
+echo hola > f4
+cat f4
+exit
+cat hola
+exit
+cat f3
+cat 3
+exit
+cat 3
+cat 3
+cat fff
+exit
+cat 3
+cat ff
+exit
+cat 3
+cat ff
+exit
+echo hola > f3 | cat f3 
+echo hola > f3 | cat f3
+exit
+echo hola > f3 | cat f3
+exit
+echo hola > f3| cat f3 
+exit
+echo hola > f3| cat f3
+exit
+echo hola > f3| cat f3
+echo hola > f3 | cat f3
+exit
+export 
+export HOLI=HOLI
+export
+unset HOLI
+export
+export HOLI=H|
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+export HOLI=H |
+export HOLI=H |
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+rm tail
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+exit
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+exit
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+exit
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+rm tail
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+exit
+exit
+exit
+echo hola
+echo hola > gg
+cat gg\
+cat gg
+exit
+echo hola > gg
+exit
+echo hola > gg
+exit
+echo hola > gg
+exit
+echo hola > gg
+exit
+echo hola > gg
+exit
+echo hola > gg
+exit
+echo hola > gg
+exit
+echo hola > gg
+exit
+echo hola > gg
+exit
+ps
+echo hola
+echo hola | cat > g
+cat g
+exit
+cat g
+echo hola
+exit
+cat g
+exit
+ps
+exit
+ps
+ps
+exit
+ps
+ps
+exit
+ps
+ps
+exit
+exgfdsdfgsdfg
+fgsdfgsdf
+gsdfgsdfgs
+exit
+asdfasdf
+dasffasdf
+sadfas
+exit
+dsgsdaga
+dsgsdaga
+sadfas
+sadfas
+sadfas
+sadfas
+exit
+dsf
+
+exit
+
+
+
+
+
+exit
+exit
+ps
+ps
+ps
+exit
+ps
+exit
+ps
+exit
+ps
+ps
+echo hola
+exit
+ps
+ps
+exit
+ps
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+exit
+echo hola
+exit
+ps
+exit
+ps
+exit
+ps
+exit
+ 
+
+
+
+
+
+exit
+
+
+
+
+
+
+
+
+
+
+exit
+ps
+ps
+ps
+ps
+ps
+exit
+ps
+exit
+ps
+exxit
+exit
+echo $?
+cat << ?
+echo $?
+cat << ? | head -1
+cat << ? | head -1
+cat << ? | head -1
+cat << ? | head -1
+exit
+cat << ? | head -1
+cat << ? | head -1
+cat << ? | head -1
+exit
+cat << ? | head -1
+cat << ? | head -1
+exit
+cat << ? | head -1
+exit
+cat << ? | head -1
+exit]
+exit
+exit
+cat << ? | head -1
+cat << ? | head -1
+exit
+cat << ? | head -1
+exit
+cat << ? | head -1
+exit
+cat << ? | head -1
+exit
+cat << ? | head -1
+cat << ? | head -1
+exit
+cat << ? | head -1
+exit
+cat << ? | head -1
+
+
+
+
+
+
+
+
+
+
+
+
+exit
+exit
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+
+exit
+echo hola
+exit
+ps
+exir
+exit
+ps
+exit
+ps
+hjhjihjihji
+ps
+ps
+ps
+ps
+ps
+ps
+exit
+ps
+exit
+ps
+exit
+ps
+ps
+ps
+exit
+ps
+exit
+ps
+exit
+ 
+ 
+ 
+ 
+exit
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+exit
+exit
+export HOLI=Holi| export | tail -1 | cat > tail | unset HOLI | export
+cat tail
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+cat tail
+
+
+
+
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+exit
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+export HOLI=Holi
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+export HOLI="holi"
+export
+exit
+export HOLI="holi"
+export HOLI=Holi | tail -1 | cat > tail | unset HOLI | export
+cat tail
+export HOLI=Holi | tail -5 | cat > tail | unset HOLI | export
+
+
+cat tail
+exit+
+
+exit
+fdsfdsfds
+exit
+dfdsfds
+dsf
+fds
+dfs
+dfs
+dsfdfs
+dsf
+dsf
+dsf
+dsf
+ exit
+echo hola }
+echo hola }
+echo hola } 
+echo hola }
+
+xdg
+echo hola }barra
+echo hola }barra
+
+echo hola }barra
+echo hola }
+echo hola } fbdgdgzd
+exit
+
+
+
+
+
+
+
+
+
+
+exit
+
+
+
+
+
+
+
+
+
+
+
+
+exit
+
+
+
+
+
+
+
+
+exit
+
+  
+ 
+ 
+ 
+ 
+ 
+
+
+
+ 
+ 
+ 
+ 
+ 
+
+
+
+
+
+exit
+
+
+
+
+
+
+
+
+
+
+
+exiy
+exit
+
+
+
+
+
+
+
+
+exit
+
+
+
+
+
+
+
+
+exit
+ 
+exit
+
+exit
+
+exit
+echo hola
+
+echo hola
+exit
+
+make
+
+
+exit
+echo hola
+echo hola
+exit
+echo hola
+exit
+exit
