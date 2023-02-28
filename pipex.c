@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:13:02 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/28 16:07:18 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:32:33 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ void	select_redirection_pipex(t_all *aux, int *in_out_all_act, int *pip)
 			close(fd);
 		}
 		else if (aux->dir[0] == '3')
-		{
 			heredocpip(aux, in_out_all_act, pip);
-		}
 	}
 }
 

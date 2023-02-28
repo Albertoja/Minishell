@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_endquotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:52:36 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/25 20:02:20 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:34:54 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"minishell.h"
-
-char	*search_first_cmd(char *input)
-{
-	int		a;
-	char	*cmd;
-
-	a = 0;
-	while (input[a] != ' ')
-		a++;
-	cmd = malloc(sizeof(char) * (a + 1));
-	a = 0;
-	while (input[a] != ' ')
-	{
-		cmd[a] = input[a];
-		a++;
-	}
-	return (cmd);
-}
 
 char	*sust_a(char *input, char a)
 {
@@ -74,32 +56,39 @@ char	*search_a(char	*input, char a)
 	return (input);
 }
 
+char	*error_endquotes(void)
+{
+	if (g_interactive == 2)
+	{
+		printf("> minishell: ");
+		printf("unexpected EOF while looking for matching `\"'\n");
+		printf("minishell: syntax error: unexpected end of file\n");
+	}
+	return (ft_strdup(""));
+}
+
+char	*ft_endquotes2(char *input, char *oldinput)
+{
+	oldinput = ft_strjoin(oldinput, " \n");
+	oldinput = ft_strjoin(oldinput, input);
+	return (oldinput);
+}
+
 char	*ft_endquotes(char *oldinput, char a)
 {
-	char	*input;
-	int		i;
+	char		*input;
+	static int	i;
 
-	i = 0;
 	g_interactive = 2;
 	while (1)
 	{
 		input = readline(YELLOW">"RESET);
 		if (!input)
-		{
-			if (g_interactive == 2)
-			{
-				printf("> minishell: unexpected EOF\n");
-				printf("minishell: syntax error: unexpected end of file\n");
-				return (ft_strdup(""));
-			}
-			if (g_interactive == 3)
-				return (ft_strdup(""));
-		}
+			return (error_endquotes());
 		if (input && *input)
 		{
 			input = search_a(input, a);
-			oldinput = ft_strjoin(oldinput, " \n");
-			oldinput = ft_strjoin(oldinput, input);
+			oldinput = ft_endquotes2(input, oldinput);
 			while (input[i])
 				i++;
 			if (input[i - 1] == a)

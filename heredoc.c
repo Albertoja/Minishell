@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:29:16 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/28 16:11:59 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/28 17:30:12 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip)
 	a = 0;
 	while (a == 0)
 	{
+		g_interactive = 2;
 		input = readline(">");
 		if (!ft_strncmp(input, f->files[0], fd_len[1]))
 		{
