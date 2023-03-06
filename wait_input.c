@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:59 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 19:39:10 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:42:05 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	no_input_signal(void)
 	exit(1);
 }
 
-char	**start_mini(char *input, int *status, char **env)
+char	**start_mini(char *input, int *status, char **env, char *home)
 {
 	char	**matrix;
 	t_all	*head;
@@ -28,7 +28,8 @@ char	**start_mini(char *input, int *status, char **env)
 	if (!matrix)
 		exit(0);
 	head = ft_create_lst(matrix);
-	env = exe(head, env, status);
+	home = ft_search_home(env, home);
+	env = exe(head, env, status, home);
 	free(input);
 	ft_lstclear_minishell(&head);
 	return (env);
@@ -40,7 +41,7 @@ void	dupfd(int *std)
 	dup2(STDOUT_FILENO, std[1]);
 }
 
-void	ft_wait_for_input(char **env)
+void	ft_wait_for_input(char **env, char *home)
 {
 	int			std[2];
 	char		*input;
@@ -62,7 +63,7 @@ void	ft_wait_for_input(char **env)
 		if (!input)
 			*status = 1;
 		if (input && input[0])
-			env = start_mini(input, status, env);
+			env = start_mini(input, status, env, home);
 		else
 			free(input);
 		dupfd(std);

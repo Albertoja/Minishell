@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:51:39 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 09:02:40 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/01 20:09:56 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,14 @@ int	ft_print_matrix_env(char **env)
 	return (0);
 }
 
-int	ft_pwd(void)
+int	ft_pwd(int *status)
 {
 	char	*ret;
 	int		len;
 
 	len = 1;
 	ret = NULL;
+	*status = 0;
 	while (1)
 	{
 		ret = malloc(sizeof(char) * len);
@@ -88,20 +89,20 @@ void	ft_exit(char **str, char **envc)
 	exit(env);
 }
 
-char	**ft_builtins(t_all *head, char **env, int *status)
+char	**ft_builtins(t_all *head, char **env, int *status, char *home)
 {
 	if (ft_strncmp(head->cmds[0], "exit", 10) == 0)
 		ft_exit(head->cmds, env);
 	else if (ft_strncmp(head->cmds[0], "pwd", 10) == 0)
-		ft_pwd();
+		ft_pwd(status);
 	else if (ft_strncmp(head->cmds[0], "echo", 10) == 0)
 		*status = ft_echo(head->cmds);
 	else if (ft_strncmp(head->cmds[0], "cd", 10) == 0)
-		env = ft_cd(head->cmds, env);
+		env = ft_cd(head->cmds, env, status, home);
 	else if (ft_strncmp(head->cmds[0], "env", 10) == 0)
 		ft_print_matrix_env(env);
 	else if (ft_strncmp(head->cmds[0], "export", 10) == 0)
-		env = ft_export(head->cmds, env);
+		env = ft_export(head->cmds, env, status);
 	else if (ft_strncmp(head->cmds[0], "unset", 10) == 0)
 		env = ft_unset(head->cmds, env);
 	else

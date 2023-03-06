@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   exe.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/28 16:28:17 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:49:27 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**exe(t_all *first, char **envp, int *status)
+char	**exe(t_all *first, char **envp, int *status, char *home)
 {
 	t_all	*aux;
 
@@ -24,7 +24,7 @@ char	**exe(t_all *first, char **envp, int *status)
 			if (!first->dir)
 			{
 				if (is_builtin(first->cmds[0]) == 1)
-					envp = ft_builtins(first, envp, status);
+					envp = ft_builtins(first, envp, status, home);
 				else
 					execmd(first, envp, status);
 			}
@@ -32,7 +32,7 @@ char	**exe(t_all *first, char **envp, int *status)
 				redirections(first, envp, status);
 		}
 		else
-			pipex(aux, envp, status);
+			pipex(aux, envp, status, home);
 	}
 	return (envp);
 }

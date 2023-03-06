@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:38:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 16:47:12 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:26:14 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,41 @@ static char	**input_var(char **env, char *str)
 	new_env = malloc(sizeof(char *) * (count_str(env) + 2));
 	while (env[++i])
 		new_env[i] = ft_strdup(env[i]);
-	new_env[i] = ft_putquotes_export(str);
+	new_env[i] = ft_strdup(str);
 	new_env[++i] = NULL;
 	ft_free_matrix(env);
 	return (new_env);
 }
 
+static int	check_var(char *str, int *status)
+{
+	int		ret;
+	char	*aux;
+
+	aux = str;
+	ret = 1;
+	if (!ft_strchr(str, '='))
+		ret = 0;
+	if (ft_isalpha(*str) == 0 && *str != '_')
+		ret = 0;
+	while (*str != '=')
+	{
+		if (*str != '_' && ft_isalnum(*str) == 0)
+			ret = 0;
+		str++;
+	}
+	if (ret == 0)
+	{
+		*status = 1;
+		printf("minishell: export: `%s': not a valid identifier\n", aux);
+	}
+	return (ret);
+}
+
 static char	*replace_line(char *replace, char *with)
 {
 	free(replace);
-	with = ft_putquotes_export(with);
-	return (with);
+	return (ft_strdup(with));
 }
 
 static char	**print_matrix_export(char **matrix)
@@ -50,9 +74,10 @@ static char	**print_matrix_export(char **matrix)
 	return (matrix);
 }
 
-char	**ft_export(char **args, char **env)
+char	**ft_export(char **args, char **env, int *status)
 {
 	int		i;
+	int		flag;
 	size_t	len;
 	int		j;
 
@@ -61,14 +86,18 @@ char	**ft_export(char **args, char **env)
 		return (print_matrix_export(env));
 	while (args[++i])
 	{
-		j = 0;
-		len = ft_lenchar(args[i], '=');
-		while (env[j] && ft_strncmp(args[i], env[j], len) != 0)
-			j++;
-		if (env[j] == NULL)
-			env = input_var(env, args[i]);
-		else
-			env[j] = replace_line(env[j], args[i]);
+		flag = check_var(args[i], status);
+		if (flag)
+		{
+			j = 0;
+			len = ft_lenchar(args[i], '=');
+			while (env[j] && ft_strncmp(args[i], env[j], len + 1) != 0)
+				j++;
+			if (env[j] == NULL)
+				env = input_var(env, args[i]);
+			else
+				env[j] = replace_line(env[j], args[i]);
+		}
 	}
 	return (env);
 }

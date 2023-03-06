@@ -982,3 +982,354 @@ echo hola "hola
 echo hola "hola
 echo hola "hola
 echo hola "hola
+echo '$USER'
+echo $USER
+echo '"$USER
+echo '"$USER"'
+echo "'$USER'"
+echo "'$USER'"
+echo "'$USER'"
+echo "'$USER'"
+echo '$USER'
+echo '"$USER"'
+echo $USER
+echo "$USER"
+echo "'$USER'"
+echo '"$USER"'
+exit
+echo '"$USER"'
+echo '$USER'
+echo '"$USER"'
+echo "'$USER'"
+exit
+echo "'$USER'"
+echo '$USER'
+echo $USER
+exit
+echo $USER
+exit
+echo $USER
+echo "'$USER'"
+echo '"$USER"'
+echo "$USER"
+exit
+echo "$USER"
+exit
+echo "$USER"
+exit
+cd a
+echo $?
+echo $USER
+echo $?
+echo $?
+echo '$?'
+echo "$?"
+cd a
+echo $?
+cd a
+cd libft
+cd l
+echo $?
+echo $?
+cd l
+cd l
+cd lafafa
+cd lafafa
+make
+cd lafafa
+cd lafafa
+cd lafafa wggsa
+pwd
+cd ~
+hola
+hola
+exit
+hola
+exit
+export
+export
+env
+export a=2
+env
+export
+export
+export HOME=hola
+export
+export a=2
+env
+env
+env
+export a=2
+env
+export a=2
+env
+export b=3
+env
+export b=3
+env
+export b=3
+env
+export
+export b=3
+export
+env
+exit
+env
+export
+export HOME=al
+export
+export HOME=al
+export HOME=al
+exit
+export HOME=al
+export HOME=al
+exit
+export HOME=al
+export HOME=al
+export HOME=al
+export HOME=al
+export HOME=al
+exit
+export
+unset HOME
+export
+export
+make
+export
+unset HOME
+export
+export
+unset HOME
+export
+make re
+exit
+export
+unset HOME
+cd ~
+pwd
+cd ~
+pwd
+export
+exit
+unset HOME
+cd ~
+pwd
+make
+unset HOME
+cd ~
+unset HOME
+cd ~
+cd ~
+cd ~
+cd ~
+unset HOME
+cd ~
+cd ~
+unset HOME
+cd ~
+cd a
+echo $?
+echo $?
+export .=a
+export .=a
+export
+export .=a
+export
+export .=a
+export .=a
+export "=a
+export .=a
+echo $?
+echo $?
+export .=a
+echo $?
+exit
+echo $?
+export .=a
+echo $?
+exit
+export .=a
+echo $?
+export .=a
+exit
+export .=a
+exit
+export .=a
+exit
+export .=a
+echo $?
+export .=a
+exit
+echo $?
+exit
+echo $?
+echo $?
+exit
+echo $?
+exit
+echo $?
+export .=a
+echo $?
+exit
+echo $?
+export .=a
+echo $?
+exit
+echo $a?
+echo $a?
+echo $?a
+echo $?
+echo $?a
+echo $USERa
+echo $USER
+exit
+echo $USERa
+echo $?a
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?
+echo $USER
+exit
+echo $USER
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+exit
+echo $USER
+exit
+echo $?anfdffsabfab
+exit
+echo $?anfdffsabfab
+exit
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+exit
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?anfdffsabfab
+echo $?
+echo $USER
+echo $?
+echo $?
+echo $?gsmknpakn
+exit
+echo $?gsmknpakn
+echo $?gsmknpakn
+exit
+echo $?gsmknpakn
+echo $?gsmknpakn
+export .=a
+echo $?gsmknpakn
+echo $?gsmknpakn $?
+echo $?gsmknpakn $?gss
+exit
+echo $USER
+echo $USER $?afija
+echo $?$USER
+exit
+echo $?$USER
+echo $USER $?afija
+exit
+echo $.
+echo $?$USER
+exit
+echo $?
+export .=a
+pwd
+echo $?
+echo $?
+export .=a
+pwd
+echo $?
+export .=a
+pwd
+echo $?
+echo $?
+export .=a
+echo $?
+exit
+echo $?
+export .=a
+echo $?
+echo $?
+exit
+ex
+s
+echo $?
+echo $?
+s
+echo $?
+exit
+s
+echo "ho
+echo "ho
+echo "ho
+
+echo "ho
+echo "ho
+echo "ho
+
+
+echo "ho
+echo "ho
+
+echo "ho
+
+echo "ho
+
+ 
+
+exit
+echo hola |
+echo hola |
+echo hola |
+
+
+echo hola |
+
+
+
+
+echo hola |
+echo hola |
+echo hola |
+echo hola |
+echo hola |
+echo hola |
+echo hola |
+echo hola |
+echo hola |
+exit
+echo hola |
+exit
+
+exit
+echo hola |echo adios
+bb
+exit
+echo hola |echo adios
+echo hola |echo adios
+echo hola | echo adios
+echo hola | echo
+echo hola | echo adios
+echo hola | echo adios
+echo hola |
+exit
+echo hola |
+exit
+echo hola |
+exit
+echo "ho
+exit
+
+echo "ho
+exit
+ 
+exit

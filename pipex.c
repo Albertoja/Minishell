@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:13:02 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/28 17:32:33 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/01 18:50:50 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	declare(t_all *aux, int *in_out_all_act, int status)
 	in_out_all_act[4] = status;
 }
 
-void	pipex2(t_all *aux, char **envp, int *pip, int *in_out_all_act)
+void	pipex2(t_all *aux, char **envp, int *pip, int *in_out_all_act, char *home)
 {
 	close(pip[0]);
 	dup2(in_out_all_act[0], STDIN_FILENO);
@@ -65,7 +65,7 @@ void	pipex2(t_all *aux, char **envp, int *pip, int *in_out_all_act)
 	{
 		if (in_out_all_act[3] != in_out_all_act[2])
 			dup2(pip[1], STDOUT_FILENO);
-		ft_builtins(aux, envp, &in_out_all_act[4]);
+		ft_builtins(aux, envp, &in_out_all_act[4], home);
 	}
 	else
 	{
@@ -83,7 +83,7 @@ void	closepip(int *pip)
 	dup2(dup(STDOUT_FILENO), STDOUT_FILENO);
 }
 
-void	pipex(t_all *aux, char **envp, int *status)
+void	pipex(t_all *aux, char **envp, int *status, char *home)
 {
 	int		pip[2];
 	int		in_out_all_act[5];
@@ -97,7 +97,7 @@ void	pipex(t_all *aux, char **envp, int *status)
 		if (pid == -1)
 			ft_error("ERROR: error on Fork", "\n");
 		if (pid == 0)
-			pipex2(aux, envp, pip, in_out_all_act);
+			pipex2(aux, envp, pip, in_out_all_act, home);
 		else
 		{
 			close(pip[1]);

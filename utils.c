@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:53:17 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 09:19:42 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:35:57 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,25 @@ char	*get_oldpwd(char **env)
 		env++;
 	}
 	return (NULL);
+}
+
+int	ft_errorcd(char *new_dir)
+{
+	printf("minishell: cd: %s: No such file or directory\n", new_dir);
+	return (1);
+}
+
+char	*ft_search_home(char **env, char *home)
+{
+	int	col;
+
+	col = ft_comp_var("HOME", env);
+	if (col < 0)
+	{
+		if (!home)
+			return (NULL);
+		return (home);
+	}
+	else
+		return (env[col]);
 }

@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:52:36 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 19:36:03 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/06 14:58:50 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ char	*search_a(char	*input, char a)
 	return (input);
 }
 
-char	*error_endquotes(void)
+char	*error_endquotes(char *oldinput)
 {
+	free(oldinput);
 	if (g_interactive == 2)
 	{
 		printf("> minishell: ");
@@ -84,7 +85,7 @@ char	*ft_endquotes(char *oldinput, char a)
 		g_interactive = 2;
 		input = readline(YELLOW">"RESET);
 		if (!input)
-			return (error_endquotes());
+			return (error_endquotes(oldinput));
 		if (input && *input)
 		{
 			input = search_a(input, a);

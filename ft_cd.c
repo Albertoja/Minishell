@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:29 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 09:07:37 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/01 19:06:14 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #include "minishell.h"
 
-char	*check_dir(char **args, char *path)
+char	*check_dir(char **args, char *path, int *status)
 {
 	char	*new_dir;
 	char	*aux;
@@ -37,6 +37,8 @@ char	*check_dir(char **args, char *path)
 		close(fd);
 		return (new_dir);
 	}
+	else
+		*status = ft_errorcd(args[1]);
 	return (NULL);
 }
 
@@ -82,24 +84,33 @@ char	*back_one_dir(char *path)
 	return (new_dir);
 }
 
-char	*get_home(char **env)
+char	*get_home(char **env, int *status, char *home)
 {
 	char	*new_dir;
 
-	while (*env)
+	if (ft_strncmp(home, "HOME=", 5) == 0)
 	{
-		if (ft_strncmp(*env, "HOME=", 5) == 0)
-		{
-			new_dir = ft_substr(*env, 5, UINT_MAX);
-			return (new_dir);
-		}
-		env++;
+		new_dir = ft_substr(home, 5, UINT_MAX);
+		return (new_dir);
 	}
-	ft_putstr_fd("minishell: cd : HOME not set\n", 1);
-	return (NULL);
+	else
+	{
+		while (*env)
+		{
+			if (ft_strncmp(*env, "HOME=", 5) == 0)
+			{
+				new_dir = ft_substr(*env, 5, UINT_MAX);
+				return (new_dir);
+			}
+			env++;
+		}
+		ft_putstr_fd("minishell: cd : HOME not set\n", 1);
+		*status = 1;
+		return (NULL);
+	}
 }
 
-char	**ft_cd(char **args, char **env)
+char	**ft_cd(char **args, char **env, int *status, char *home)
 {
 	char	*path;
 	char	*new_dir;
@@ -108,13 +119,13 @@ char	**ft_cd(char **args, char **env)
 		return (NULL);
 	path = get_pwd();
 	if (!args[1] || ft_strncmp(args[1], "~", 5) == 0)
-		new_dir = get_home(env);
+		new_dir = get_home(env, status, home);
 	else if (ft_strncmp(args[1], "..", 5) == 0)
 		new_dir = back_one_dir(path);
 	else if (ft_strncmp(args[1], "-", 5) == 0)
 		new_dir = get_oldpwd(env);
 	else
-		new_dir = check_dir(args, path);
+		new_dir = check_dir(args, path, status);
 	if (new_dir)
 		replace_pwd_oldpwd(new_dir, path, env);
 	free(path);
