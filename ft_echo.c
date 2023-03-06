@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:57:26 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/14 17:09:43 by mario            ###   ########.fr       */
+/*   Updated: 2023/02/27 16:47:28 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_compare_n(char *str)
 	return (1);
 }
 
-void	ft_echo(char **str)
+int	ft_echo(char **str)
 {
 	int	cont;
 	int	sw;
@@ -44,11 +44,12 @@ void	ft_echo(char **str)
 	}
 	while (str[cont])
 	{
-		printf("%s", (str[cont]));
+		write(1, str[cont], ft_strlen(str[cont]));
 		if (str[cont + 1])
-			printf(" ");
+			write(1, " ", 1);
 		cont++;
 	}
 	if (sw == 0)
-		printf("\n");
+		write(1, "\n", 1);
+	return (0);
 }

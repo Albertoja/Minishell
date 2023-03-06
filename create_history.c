@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:47:51 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/25 18:07:31 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/28 09:05:00 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ void	ft_read_history(void)
 	close (fd);
 }
 
-void	ft_create_history(char *input, char *homepath)
+void	ft_create_history(char *input)
 {
 	int	fd;
 
-	fd = open(homepath, O_CREAT | O_RDWR | O_APPEND, 0644);
+	fd = open("history", O_CREAT | O_RDWR | O_APPEND, 0644);
 	if (fd == -1)
 		return ;
 	add_history(input);

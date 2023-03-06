@@ -3,121 +3,131 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:42:44 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/14 17:09:31 by mario            ###   ########.fr       */
+/*   Updated: 2023/02/28 13:51:44 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	outputredirection(t_all *first, char **envp)
+void	outputredirectionaux(t_all *f, char **envp, char *path, int *i)
 {
-	char	*path;
-	int		fd;
-
-	fd = 0;
-	if (fork() == 0)
+	while (f->files[i[1]])
 	{
-		fd = open(first->files[0], O_CREAT | O_RDWR | O_TRUNC, 0644);
-		if (fd == -1)
-			error("Error: Can Not Read the Output File");
-		dup2(fd, STDOUT_FILENO);
-		path = get_path(first->cmds[0], envp);
-		if (execve(path, &first->cmds[0], envp) == -1)
-			ft_error("command not found", first->cmds[0]);
+		i[0] = open(f->files[i[1]], O_CREAT | O_RDWR | O_TRUNC, 0644);
+		dup2(i[0], STDOUT_FILENO);
+		(i[1])++;
 	}
-	else
+	if (execve(path, &f->cmds[0], envp) == -1)
 	{
-		while (waitpid(-1, NULL, WUNTRACED) == -1)
-			close(fd);
+		free(path);
+		ft_error("execve error", f->cmds[0]);
 	}
 }
 
-void	inputredirection(t_all *first, char **envp)
+void	outputredirection(t_all *f, char **envp, int *status)
 {
 	char	*path;
-	int		fd;
-
-	fd = 0;
-	if (fork() == 0)
-	{
-		fd = open(first->files[0], O_RDONLY, 0644);
-		if (fd == -1)
-			error("Error: Can Not Read the Input File");
-		dup2(fd, STDIN_FILENO);
-		path = get_path(first->cmds[0], envp);
-		if (execve(path, &first->cmds[0], envp) == -1)
-			ft_error("command not found", first->cmds[0]);
-	}
-	else
-	{
-		while (waitpid(-1, NULL, WUNTRACED) == -1)
-			close(fd);
-	}
-}
-
-void	outputappendredirection(t_all *first, char **envp)
-{
-	char	*path;
-	int		fd;
-
-	fd = 0;
-	if (fork() == 0)
-	{
-		fd = open(first->files[0], O_CREAT | O_RDWR | O_APPEND, 0644);
-		if (fd == -1)
-			error("Error: Can Not Read the Input File");
-		dup2(fd, STDOUT_FILENO);
-		path = get_path(first->cmds[0], envp);
-		if (execve(path, &first->cmds[0], envp) == -1)
-			ft_error("command not found", first->cmds[0]);
-	}
-	else
-	{
-		while (waitpid(-1, NULL, WUNTRACED) == -1)
-			close(fd);
-	}
-}
-
-/*void	heredoc(t_all *first, char **envp)
-{
-	int		pip[2];
-	int		len;
-	char	*delimeter;
-	char	*input;
-	char	*path;
+	int		i[2];
 	pid_t	pid;
-	int	fd;
 
-	delimeter = first->files[0];
-	len = ft_strlen(delimeter);
-	
-	if (pipe(pip) == -1)
-		exit(1);
-	pid = fork();
-	if(pid == 0)
+	i[0] = 0;
+	i[1] = 0;
+	path = get_path(f->cmds[0], envp);
+	if (!path)
 	{
-		g_interactive = 2;
-		fd = open("/tmp/file1", O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
-		while(1)
+		free(path);
+		ft_error("command not found", f->cmds[0]);
+		*status = 127;
+	}
+	else
+	{
+		pid = fork();
+		if (pid == 0)
+			outputredirectionaux(f, envp, path, i);
+		else
+			while (waitpid(-1, NULL, WUNTRACED) == -1)
+				close(i[0]);
+		free(path);
+		waitpid(pid, status, 0);
+	}
+}
+
+void	inputredirectionaux(t_all *f, char **envp, int *status, int fd)
+{
+	pid_t	pid;
+	char	*path;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		dup2(fd, STDIN_FILENO);
+		path = get_path(f->cmds[0], envp);
+		if (execve(path, &f->cmds[0], envp) == -1)
 		{
-			input = readline(">");
-			if (!ft_strncmp(input, delimeter, len))
-			{
-				close(pip[0]);
-				close(pip[1]);
-				exit(0);
-			}
-			write(fd, input, ft_strlen(input));
-			write(fd,"\n", 1);
-			free(input);
+			ft_error("command not found", f->cmds[0]);
 		}
 	}
-	close(pip[1]);
-	dup2(pip[0], STDIN_FILENO);
-	close(pip[0]);
-	waitpid(pid, NULL, 0);
-	
-}*/
+	else
+	{
+		while (waitpid(-1, NULL, WUNTRACED) == -1)
+			close(fd);
+	}
+	waitpid(pid, status, 0);
+}
+
+void	inputredirection(t_all *f, char **envp, int *status)
+{
+	int		fd;
+	char	*path;
+
+	path = get_path(f->cmds[0], envp);
+	if (!path)
+	{
+		ft_error("command not found", f->cmds[0]);
+		*status = 127;
+	}
+	else
+	{
+		fd = open(f->files[0], O_RDONLY, 0644);
+		if (fd == -1)
+		{
+			printf("minishell : %s Can Not Read the Input File\n", f->files[0]);
+			*status = 127;
+		}
+		else
+		{
+			inputredirectionaux(f, envp, status, fd);
+		}
+	}
+}
+
+int	outputappendredirection(t_all *f, char **envp)
+{
+	char	*path;
+	int		fd;
+	int		status;
+	pid_t	pid;
+
+	fd = 0;
+	pid = fork();
+	if (pid == 0)
+	{
+		fd = open(f->files[0], O_CREAT | O_RDWR | O_APPEND, 0644);
+		if (fd == -1)
+			ft_error("Error: Can Not Read the Input File", "\n");
+		dup2(fd, STDOUT_FILENO);
+		path = get_path(f->cmds[0], envp);
+		if (execve(path, &f->cmds[0], envp) == -1)
+			ft_error("command not found", f->cmds[0]);
+	}
+	else
+	{
+		while (waitpid(-1, NULL, WUNTRACED) == -1)
+			close(fd);
+	}
+	waitpid(pid, &status, 0);
+	return (status);
+}

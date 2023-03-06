@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_endquotes.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 17:52:36 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/13 17:10:15 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/02/25 20:02:20 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,11 +84,11 @@ char	*ft_endquotes(char *oldinput, char a)
 	while (1)
 	{
 		input = readline(YELLOW">"RESET);
-		if(!input)
+		if (!input)
 		{
 			if (g_interactive == 2)
 			{
-				printf("> minishell: unexpected EOF while looking for matching `\"'\n");
+				printf("> minishell: unexpected EOF\n");
 				printf("minishell: syntax error: unexpected end of file\n");
 				return (ft_strdup(""));
 			}

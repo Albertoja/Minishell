@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:44 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/13 16:10:29 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:58:09 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_check_pipe(char *str)
+char	*ft_check_pipe(char *str)
 {
 	int	aux;
 
@@ -34,10 +34,11 @@ void	ft_check_pipe(char *str)
 					break ;
 			}
 			if (!str[aux])
-				ft_error("pipe suelto", NULL);
+				return (ft_endpipe(str));
 		}
 		aux++;
 	}
+	return (str);
 }
 
 char	*check_str(char *str)
@@ -46,7 +47,7 @@ char	*check_str(char *str)
 
 	aux = 0;
 	if (!str)
-		return(NULL);
+		return (NULL);
 	while (str[aux])
 	{
 		if (str[aux] == 34)
@@ -67,6 +68,6 @@ char	*check_str(char *str)
 		}
 		aux++;
 	}
-	ft_check_pipe(str);
+	str = ft_check_pipe(str);
 	return (str);
 }

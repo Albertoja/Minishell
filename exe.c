@@ -3,69 +3,78 @@
 /*                                                        :::      ::::::::   */
 /*   exe.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/15 18:44:57 by mario            ###   ########.fr       */
+/*   Updated: 2023/02/28 17:42:21 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exe(t_all *first, char **envp, int status)
+char	**exe(t_all *first, char **envp, int *status)
 {
-	if (!first->next->cmds)
+	t_all	*aux;
+
+	aux = first;
+	if (first->cmds[0])
 	{
-		if (!first->dir)
+		if (!first->next->cmds)
 		{
-			if (is_builtin(first->cmds[0]) == 1)
-				ft_builtins(first, envp, status);
+			if (!first->dir)
+			{
+				if (is_builtin(first->cmds[0]) == 1)
+					envp = ft_builtins(first, envp, status);
+				else
+					execmd(first, envp, status);
+			}
 			else
-				execmd(first, envp);
+				redirections(first, envp, status);
 		}
 		else
-			redirections(first, envp);
+			pipex(aux, envp, status);
 	}
-	else
-		status = pipex(first, envp);
-		return (status);
+	return (envp);
 }
 
-void	execmd(t_all *first, char **envp)
+void	execmd(t_all *first, char **envp, int *status)
 {
 	int		pid;
-	int		status;
 	char	*path;
 
 	path = get_path(first->cmds[0], envp);
-	if(!path)
+	if (!path)
 	{
-		ft_error("command not found", first->cmds[0]);	
-		return;
+		ft_error("comand not found", first->cmds[0]);
+		*status = 127;
 	}
-	pid = fork();
-	if (pid == 0)
-		if (execve(path, &first->cmds[0], envp) == -1)
-		{
-			ft_error("command not found", first->cmds[0]);
-		}
-	waitpid(pid, &status, 0);
+	else
+	{
+		pid = fork();
+		if (pid == 0)
+			if (execve(path, &first->cmds[0], envp) == -1)
+				ft_error("command not found", first->cmds[0]);
+		waitpid(pid, status, 0);
+	}
+	free(path);
 }
 
-void	redirections(t_all *first, char **envp)
+void	redirections(t_all *first, char **envp, int *status)
 {
 	if (first->dir[0] == '1')
-		inputredirection(first, envp);
+		inputredirection(first, envp, status);
 	else if (first->dir[0] == '2')
-		outputredirection(first, envp);
+		outputredirection(first, envp, status);
 	else if (first->dir[0] == '3')
-		printf("heredoc");
+		heredoc(first, envp, status);
 	else if (first->dir[0] == '4')
-		outputappendredirection(first, envp);
+		*status = outputappendredirection(first, envp);
 }
 
 int	is_builtin(char *command)
 {
+	if (ft_strncmp(command, "exit", 10) == 0)
+		return (1);
 	if (ft_strncmp(command, "echo", 10) == 0)
 		return (1);
 	if (ft_strncmp(command, "cd", 10) == 0)

@@ -6,56 +6,13 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:38:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/27 12:00:42 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:47:12 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ft_len_equal(char *str, char a)
-{
-	int	ret;
-
-	ret = 0;
-	while (*str != a && *str != '\0')
-	{
-		ret++;
-		str++;
-	}
-	return (ret);
-}
-
-int	ft_comp_var(char *cmds, char **env)
-{
-	int	len;
-	int	ret;
-
-	ret = 0;
-	while (env[ret])
-	{
-		len = ft_len_equal(env[ret], '=');
-		if (ft_strncmp(cmds, env[ret], len) == 0)
-			return (ret);
-		ret++;
-	}
-	return (-1);
-}
-
-int	ft_check_export(char *str)
-{
-	while (*str)
-	{
-		if ((*str >= '0' && *str <= '9') || (*str >= 'A' && *str <= 'Z')
-			|| (*str >= 'a' && *str <= 'z') || (*str == '=')
-			|| (*str == '_') || (*str == '\n'))
-			str++;
-		else
-			return (0);
-	}
-	return (1);
-}
-
-char	**copy_str_matrix(char **env, char *str, int a)
+static char	**input_var(char **env, char *str)
 {
 	int		i;
 	char	**new_env;
@@ -63,44 +20,55 @@ char	**copy_str_matrix(char **env, char *str, int a)
 	i = -1;
 	new_env = malloc(sizeof(char *) * (count_str(env) + 2));
 	while (env[++i])
-	{
-		if (i == a && a != -1)
-			new_env[i] = ft_strdup(str);
-		else
-			new_env[i] = ft_strdup(env[i]);
-	}
-	if (a == -1)
-	{
-		new_env[i] = ft_strdup(str);
-		i++;
-	}
-	new_env[i] = NULL;
+		new_env[i] = ft_strdup(env[i]);
+	new_env[i] = ft_putquotes_export(str);
+	new_env[++i] = NULL;
+	ft_free_matrix(env);
 	return (new_env);
 }
 
-void	ft_export(char **cmds, char **env)
+static char	*replace_line(char *replace, char *with)
 {
-	int	cont;
-	int	cop;
+	free(replace);
+	with = ft_putquotes_export(with);
+	return (with);
+}
 
-	cop = 0;
-	cont = -1;
-	if (!cmds[1] || !cmds || !*cmds)
+static char	**print_matrix_export(char **matrix)
+{
+	int	i;
+
+	i = 0;
+	if (!matrix || !*matrix)
+		return (NULL);
+	while (matrix[i])
 	{
-		while (env[++cont])
-			printf("declare -x %s\n", env[cont]);
-		return ;
+		ft_putstr_fd("declare -x ", 1);
+		ft_putstr_fd(matrix[i++], 1);
+		ft_putchar_fd('\n', 1);
 	}
-	cont = 1;
-	while (cmds[cont])
+	return (matrix);
+}
+
+char	**ft_export(char **args, char **env)
+{
+	int		i;
+	size_t	len;
+	int		j;
+
+	i = 0;
+	if (!args[1] || !env || !*env)
+		return (print_matrix_export(env));
+	while (args[++i])
 	{
-		if (ft_check_export(cmds[cont]) == 0)
-		{
-			printf("export: `%s': not a valid identifier\n", cmds[cont]);
-			exit(0);
-		}
-		cop = ft_comp_var(cmds[cont], env);
-		env = copy_str_matrix(env, cmds[cont], cop);
-		cont++;
+		j = 0;
+		len = ft_lenchar(args[i], '=');
+		while (env[j] && ft_strncmp(args[i], env[j], len) != 0)
+			j++;
+		if (env[j] == NULL)
+			env = input_var(env, args[i]);
+		else
+			env[j] = replace_line(env[j], args[i]);
 	}
+	return (env);
 }
