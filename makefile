@@ -1,36 +1,31 @@
 
-SRCS	= 	builtins.c \
-			check_str.c \
-			clean_quotes.c\
-			create_history.c\
-			error.c \
+SRCS	= 	main.c \
+			pipex.c \
+			redirections.c \
 			exe.c \
 			exeutils.c \
-			ft_cd.c \
-			ft_check_dollar.c\
-			ft_echo.c\
-			ft_endpipe.c\
-			ft_endquotes.c\
-			ft_export.c\
-			ft_export2.c\
-			ft_make_lst.c \
-			ft_strjoin_n.c\
-			ft_unset.c\
-			get_next_line.c\
-			get_next_line_aux.c\
-			get_pwd.c\
-			heredoc.c\
-			main.c \
-			pipex.c \
-			print_matrix.c \
-			redirections.c \
-			search_cmds.c\
-			search_files.c\
-			search_redirection.c\
-			signals.c\
-			split_pipe.c \
 			utils.c \
 			wait_input.c \
+			check_str.c \
+			error.c \
+			split_pipe.c \
+			print_matrix.c \
+			ft_make_lst.c \
+			create_history.c\
+			get_next_line.c\
+			search_redirection.c\
+			clean_quotes.c\
+			builtins.c \
+			ft_echo.c\
+			ft_cd.c \
+			get_pwd.c\
+			ft_export.c\
+			ft_unset.c search_cmds.c\
+			ft_endquotes.c\
+			search_files.c\
+			ft_check_dollar.c\
+			ft_strjoin_n.c\
+			signals.c\
 
 OBJS	= ${SRCS:.c=.o}
 
