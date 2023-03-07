@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:50 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/07 18:08:38 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:23:47 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	leaks(void)
-{
-system("leaks minishell");
-}
+// void	leaks(void)
+// {
+// 	system("leaks minishell");
+// }
 
 int	g_interactive = 0;
 
@@ -52,7 +52,7 @@ int	main(int argc, char *argv[], char *envp[])
 	char	*home;
 
 	home = NULL;
-	atexit(leaks);
+	//atexit(leaks);
 	if (argc != 1 || argv[1] || !envp)
 		return (0);
 	env = copy_matrix(envp);

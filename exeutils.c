@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exeutils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:44:07 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/28 17:37:30 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/07 18:29:32 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	*get_path(char *cmd, char *envp[])
 
 	i_j[0] = 0;
 	i_j[1] = 0;
-	if (cmd[0] == '/' && access(cmd, 0) == 0)
+	if (access(cmd, 0) == 0)
 		return (cmd);
 	while (envp[i_j[0]] && ft_strncmp(envp[i_j[0]], "PATH=", 5))
 		i_j[0]++;
