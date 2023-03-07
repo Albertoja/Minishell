@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:29:16 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/28 17:30:12 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:40:10 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip)
 	a = 0;
 	while (a == 0)
 	{
-		g_interactive = 2;
 		input = readline(">");
 		if (!ft_strncmp(input, f->files[0], fd_len[1]))
 		{
@@ -66,44 +65,44 @@ void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip)
 	}
 }
 
-void	heredocauxpip(int *fd_len, t_all *f, int *in_out_all_act, int *pip)
+void	heredocpipaux(t_all *a, int fd)
 {
-	char	*input;
-	int		a;
+	char	*l;
 
-	a = 0;
-	while (a == 0)
+	while (ft_strncmp(l, a->files[0], ft_strlen(a->files[0])) != 0)
 	{
-		dup2(in_out_all_act[1], STDOUT_FILENO);
-		dup2(pip[1],STDOUT_FILENO);
-		close(pip[1]);
-		input = readline(">");
-		if (!ft_strncmp(input, f->files[0], fd_len[1]))
+		l = readline(">");
+		if (ft_strncmp(l, a->files[0], strlen(a->files[0])) == 0)
 		{
-			a = 1;
-			fd_len[0] = open("/tmp/file1", O_RDONLY, 0644);
-			dup2(fd_len[0], STDIN_FILENO);
+			free(l);
+			exit(0);
 		}
-		else
-		{
-			//printf(">%s\n",input);
-			write(fd_len[0], input, ft_strlen(input));
-			write(fd_len[0], "\n", 1);
-			free(input);
-		}
+		ft_putstr_fd(l, fd);
+		ft_putstr_fd("\n", fd);
+		free(l);
 	}
 }
 
-void	heredocpip(t_all *f, int *in_out_all_act, int *pip)
+void	heredocpip(t_all *aux, int out)
 {
-	int		fd_len[2];
-	char	*deli;
+	int		fd[2];
+	pid_t	pid;
 
-	deli = f->files[0];
-	fd_len[1] = ft_strlen(deli);
-	fd_len[0] = open("/tmp/file1", O_WRONLY | O_CREAT | O_TRUNC, S_IRWXU);
-	if (fd_len[0] == -1)
-		printf("Error: Can Not Read the Input File");
-	heredocauxpip(fd_len, f, in_out_all_act,pip);
-	
+	pipe(fd);
+	pid = fork();
+	if (pid == -1)
+		ft_error("ERROR: error on Fork", "\n");
+	if (pid == 0)
+	{
+		close(fd[0]);
+		dup2(out, STDOUT_FILENO);
+		close(out);
+		heredocpipaux(aux, fd[1]);
+	}
+	else
+	{
+		close(fd[1]);
+		dup2(fd[0], STDIN_FILENO);
+		close(fd[0]);
+	}
 }

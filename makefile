@@ -32,6 +32,7 @@ SRCS	= 	builtins.c \
 			utils.c \
 			wait_input.c \
 			ft_dollarutils.c\
+			pipex_aux.c\
 
 OBJS	= ${SRCS:.c=.o}
 

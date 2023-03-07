@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:44:59 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/06 14:43:35 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/07 17:42:13 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	handler_ctrlc(int sig)
 	sig++;
 	if (g_interactive == 1)
 	{
-		rl_replace_line("", 0);
-		rl_on_new_line();
+		//rl_replace_line("", 0);
+		//rl_on_new_line();
 		ft_putstr_fd("\n", 1);
 		rl_redisplay();
 	}
