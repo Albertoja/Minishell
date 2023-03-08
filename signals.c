@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:44:59 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/07 18:15:57 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/07 19:42:20 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	handler_ctrlslash(int sig)
 {
 	sig = 0;
 	sig++;
-	write(1, "barra\n", 6);
 	if (g_interactive)
 	{
 		rl_on_new_line();

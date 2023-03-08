@@ -6,15 +6,16 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 20:32:39 by aespinos          #+#    #+#             */
-/*   Updated: 2022/12/07 17:36:19 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:30:33 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+
 char	*search_redirection02(char *straux, char *ret, int cont)
 {
-	if (!straux[cont + 1])
+	if (!ft_rederror(straux, cont))
 		ft_error("bad redirection", NULL);
 	else
 	{
@@ -36,7 +37,7 @@ char	*search_redirection02(char *straux, char *ret, int cont)
 
 char	*search_redirection01(char *straux, char *ret, int cont)
 {
-	if (!straux[cont + 1])
+	if (!ft_rederror(straux, cont))
 		ft_error("bad redirection", NULL);
 	else
 	{
@@ -68,7 +69,10 @@ char	*search_redirection(char *straux)
 		if (straux[cont] == '<')
 		{
 			if (!ret)
+			{
 				ret = ft_strdup(search_redirection01(straux, ret, cont));
+				printf("ret = %s\n", ret);
+			}
 			else
 				ret = ft_strjoin(ret, search_redirection01(straux, ret, cont));
 		}
@@ -79,7 +83,7 @@ char	*search_redirection(char *straux)
 			else
 				ret = ft_strjoin(ret, search_redirection02(straux, ret, cont));
 		}
-		if (straux[cont] == '<' || straux[cont] == '>')
+		if ((straux[cont] == '<' || straux[cont] == '>') && straux[cont + 1])
 			cont++;
 	}
 	return (ret);

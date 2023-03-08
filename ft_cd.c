@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:29 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/01 19:06:14 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:48:55 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char	*check_dir(char **args, char *path, int *status)
 {
 	char	*new_dir;
 	char	*aux;
-	int		fd;
 
 	if (args[1] && args[1][0] == '/')
 		return (args[1]);
@@ -31,12 +30,8 @@ char	*check_dir(char **args, char *path, int *status)
 		new_dir = aux;
 	}
 	free(path);
-	fd = open(new_dir, O_DIRECTORY | O_RDONLY);
-	if (fd > 0)
-	{
-		close(fd);
+	if (access(new_dir, F_OK) == 0)
 		return (new_dir);
-	}
 	else
 		*status = ft_errorcd(args[1]);
 	return (NULL);
@@ -57,7 +52,11 @@ void	replace_pwd_oldpwd(char *new_dir, char *path, char **env)
 			free(aux);
 		}
 	}
-	chdir(new_dir);
+	if (chdir(new_dir) != 0)
+	{
+		free(aux);
+		return ;
+	}
 	i = -1;
 	while (env[++i])
 	{
@@ -120,8 +119,6 @@ char	**ft_cd(char **args, char **env, int *status, char *home)
 	path = get_pwd();
 	if (!args[1] || ft_strncmp(args[1], "~", 5) == 0)
 		new_dir = get_home(env, status, home);
-	else if (ft_strncmp(args[1], "..", 5) == 0)
-		new_dir = back_one_dir(path);
 	else if (ft_strncmp(args[1], "-", 5) == 0)
 		new_dir = get_oldpwd(env);
 	else

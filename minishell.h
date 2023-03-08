@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/07 18:02:50 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:47:05 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,4 +128,6 @@ int			ft_comp_var(char *cmds, char **env);
 char		*ft_search_home(char **env, char *home);
 void		heredocpip(t_all *aux, int out);
 void		ft_pipex_aux(int *pip, pid_t pid, int *in_out_all_act);
+int			ft_rederror(char *straux, int cont);
+char		*ft_errorred(char *str, int error);
 #endif

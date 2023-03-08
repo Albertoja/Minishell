@@ -3,14 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_make_lst.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:53:55 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/07 18:04:00 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/08 18:17:00 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_redcomp(char *red)
+{
+	int cont;
+
+	cont = -1;
+	while(red[++cont])
+	{
+		if(red[cont] == '0')
+			return (0);
+	}
+	return (1);
+}
 
 t_all	*ft_basic_parse(char *str, t_all *head)
 {

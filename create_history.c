@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   create_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:47:51 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/07 18:06:41 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/07 20:43:52 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_read_history(void)
+void	ft_read_history()
 {
 	int		fd;
 	char	*line;

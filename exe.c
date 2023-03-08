@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/01 18:49:27 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/07 21:36:44 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,17 @@ char	**exe(t_all *first, char **envp, int *status, char *home)
 void	execmd(t_all *first, char **envp, int *status)
 {
 	int		pid;
+	int		i;
 	char	*path;
 
-	path = get_path(first->cmds[0], envp);
+	i = 1;
+	if (access(first->cmds[0], 0) == 0)
+	{
+		i = 0;
+		path = first->cmds[0];
+	}
+	else
+		path = get_path(first->cmds[0], envp);
 	if (!path)
 	{
 		ft_error("comand not found", first->cmds[0]);
@@ -56,7 +64,8 @@ void	execmd(t_all *first, char **envp, int *status)
 				ft_error("command not found", first->cmds[0]);
 		waitpid(pid, status, 0);
 	}
-	free(path);
+	if (i != 0)
+		free(path);
 }
 
 void	redirections(t_all *first, char **envp, int *status)

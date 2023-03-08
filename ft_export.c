@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/17 17:38:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/01 19:26:14 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:48:34 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ static int	check_var(char *str, int *status)
 		ret = 0;
 	if (ft_isalpha(*str) == 0 && *str != '_')
 		ret = 0;
-	while (*str != '=')
+	while (*str != '=' && *str)
 	{
 		if (*str != '_' && ft_isalnum(*str) == 0)
 			ret = 0;
 		str++;
 	}
+	if(!*str)
+		ret = 1;
 	if (ret == 0)
 	{
 		*status = 1;
@@ -91,7 +93,7 @@ char	**ft_export(char **args, char **env, int *status)
 		{
 			j = 0;
 			len = ft_lenchar(args[i], '=');
-			while (env[j] && ft_strncmp(args[i], env[j], len + 1) != 0)
+			while (env[j] && ft_strncmp(args[i], env[j], len) != 0)
 				j++;
 			if (env[j] == NULL)
 				env = input_var(env, args[i]);
