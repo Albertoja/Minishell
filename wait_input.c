@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:59 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/08 18:37:11 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:13:50 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ char	**start_mini(char *input, int *status, char **env, char *home)
 	if (!matrix)
 		exit(0);
 	head = ft_create_lst(matrix);
-	if (head == NULL || !head)
-	{
-		write(1, "aqui\n", 5);
-		return(env);
-	}
 	home = ft_search_home(env, home);
 	env = exe(head, env, status, home);
 	free(input);

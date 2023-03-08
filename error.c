@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:46 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/08 18:47:45 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:15:27 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,5 @@ char	*ft_errorred(char *str, int error)
 		printf("bash: syntax error near unexpected token `newline'\n");
 	if (error == 2)
 		printf("bash: error redirection\n");
-	return(NULL);
+	return (NULL);
 }

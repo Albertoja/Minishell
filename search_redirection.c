@@ -6,12 +6,11 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 20:32:39 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/08 18:30:33 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:13:34 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 char	*search_redirection02(char *straux, char *ret, int cont)
 {
@@ -69,10 +68,7 @@ char	*search_redirection(char *straux)
 		if (straux[cont] == '<')
 		{
 			if (!ret)
-			{
 				ret = ft_strdup(search_redirection01(straux, ret, cont));
-				printf("ret = %s\n", ret);
-			}
 			else
 				ret = ft_strjoin(ret, search_redirection01(straux, ret, cont));
 		}
