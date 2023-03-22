@@ -1,0 +1,4 @@
+1 hola
+2 adios
+3 bien
+4 mal

@@ -1,0 +1,24 @@
+// t_all * temp =  aux;
+	// while (temp)
+	// {
+	// 	printf("alan el puto\n");
+	// 	printf("addr: %p\n", temp);
+	// 	if (temp)
+	// 	{
+	// 		if (temp->next)
+	// 			printf("hola soy alberto\n");
+	// 		if (temp->cmds)
+	// 			printf("cmd[0]: %s\n", temp->cmds[0]);
+	// 		if (temp->dir)
+	// 			printf("dir: %s\n", temp->dir);
+	// 		if (temp->files)
+	// 			printf("files: %s\n", temp->files[0]);
+	// 		if (temp->matrix_input)
+	// 			printf("matrix: %s\n", temp->matrix_input[0]);
+	// 	}
+	// 	temp = temp->next;
+	// 	printf("addr after next: %p\n", temp);
+	// 	printf("---------------------------------------------------------------\n");
+	// }
+	// fflush(0);
+	// exit(1);
