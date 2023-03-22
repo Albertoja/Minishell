@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 20:32:39 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/08 19:13:34 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:09:22 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*search_redirection02(char *straux, char *ret, int cont)
 {
-	if (!ft_rederror(straux, cont))
+	if (!straux[cont + 1])
 		ft_error("bad redirection", NULL);
 	else
 	{
@@ -36,7 +36,7 @@ char	*search_redirection02(char *straux, char *ret, int cont)
 
 char	*search_redirection01(char *straux, char *ret, int cont)
 {
-	if (!ft_rederror(straux, cont))
+	if (!straux[cont + 1])
 		ft_error("bad redirection", NULL);
 	else
 	{
@@ -79,7 +79,7 @@ char	*search_redirection(char *straux)
 			else
 				ret = ft_strjoin(ret, search_redirection02(straux, ret, cont));
 		}
-		if ((straux[cont] == '<' || straux[cont] == '>') && straux[cont + 1])
+		if (straux[cont] == '<' || straux[cont] == '>')
 			cont++;
 	}
 	return (ret);

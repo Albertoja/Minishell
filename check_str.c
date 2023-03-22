@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_str.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:44 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/08 19:14:38 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:03:20 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,19 @@ int	ft_rederror(char *straux, int cont)
 	return (0);
 }
 
-char	*ft_check_red2(char *str, int cont, char a)
+char	*ft_check_red2(char *str, int cont)
 {
-	char	b;
-
-	if (a == '<')
-		b = '>';
-	else
-		b = '<';
 	if (!ft_rederror(str, cont))
 		return (ft_errorred(str, 1));
 	else
 	{
 		cont++;
-		if (str[cont] == b)
+		if (str[cont] == '<')
 			return (ft_errorred(str, 2));
-		if (str[cont] == a)
+		if (str[cont] == '>')
 		{
 			if (!str[cont + 1])
 				return (ft_errorred(str, 1));
-			else if (str[cont + 1] == a || str[cont + 1] == b)
-				return (ft_errorred(str, 2));
 		}
 	}
 	return (str);
@@ -88,11 +80,23 @@ char	*ft_check_red(char *str)
 	while (str[++cont] && str && str != NULL)
 	{
 		if (str[cont] == '<')
-			str = ft_check_red2(str, cont, '<');
+		{
+			if (!ft_rederror(str, cont))
+				return (ft_errorred(str, 1));
+			else
+			{
+				cont++;
+				if (str[cont] == '>')
+					return (ft_errorred(str, 2));
+				if (str[cont] == '<')
+				{
+					if (!str[cont + 1])
+						return (ft_errorred(str, 1));
+				}
+			}
+		}
 		else if (str[cont] == '>')
-			str = ft_check_red2(str, cont, '>');
-		if (str == NULL)
-			return (NULL);
+			str = ft_check_red2(str, cont);
 	}
 	return (str);
 }

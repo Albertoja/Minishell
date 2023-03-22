@@ -12,7 +12,6 @@ SRCS	= 	builtins.c \
 			ft_endpipe.c\
 			ft_endquotes.c\
 			ft_export.c\
-			ft_export2.c\
 			ft_make_lst.c \
 			ft_strjoin_n.c\
 			ft_unset.c\
@@ -32,7 +31,8 @@ SRCS	= 	builtins.c \
 			utils.c \
 			wait_input.c \
 			ft_dollarutils.c\
-			pipex_aux.c\
+			pipexredirections.c\
+			ft_cd_utils.c\
 
 OBJS	= ${SRCS:.c=.o}
 
@@ -42,7 +42,7 @@ CC	= gcc
 
 RM	= rm -f
 
-CFLAGS	= -Wall -Wextra -Werror #-fsanitize=address
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
 
 LIBFT = libft/libft.a
 

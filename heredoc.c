@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:29:16 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/07 19:07:53 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:40:17 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip)
 	a = 0;
 	while (a == 0)
 	{
-		input = readline(">");
+		input = readline(YELLOW">"RESET);
 		if (!ft_strncmp(input, f->files[0], fd_len[1]))
 		{
 			close(pip[0]);
@@ -67,44 +67,52 @@ void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip)
 	}
 }
 
-void	heredocpipaux(t_all *a, int fd)
+static void	ft_writeheredoc(char *limiter, int *pfd)
 {
-	char	*l;
+	size_t	len;
+	char	*line;
 
-	while (ft_strncmp(l, a->files[0], ft_strlen(a->files[0])) != 0)
+	len = ft_strlen(limiter);
+	while (limiter)
 	{
-		l = readline(">");
-		if (ft_strncmp(l, a->files[0], strlen(a->files[0])) == 0)
+		line = readline(YELLOW">"RESET);
+		if (!line || g_interactive == 3)
 		{
-			free(l);
+			close(pfd[0]);
+			close(pfd[1]);
+			g_interactive = 0;
+			exit(1);
+		}
+		if (!ft_strncmp(line, limiter, len))
+		{
+			close(pfd[0]);
+			close(pfd[1]);
+			g_interactive = 0;
 			exit(0);
 		}
-		ft_putstr_fd(l, fd);
-		ft_putstr_fd("\n", fd);
-		free(l);
+		ft_putstr_fd(line, pfd[1]);
+		ft_putstr_fd("\n", pfd[1]);
+		free(line);
 	}
 }
 
-void	heredocpip(t_all *aux, int out)
+void	heredocpip(t_all *head, int i, int out)
 {
-	int		fd[2];
+	int		pfd[2];
 	pid_t	pid;
 
-	pipe(fd);
+	dup2(out, STDIN_FILENO);
+	if (pipe(pfd) == -1)
+		exit(1);
 	pid = fork();
-	if (pid == -1)
-		ft_error("ERROR: error on Fork", "\n");
 	if (pid == 0)
 	{
-		close(fd[0]);
-		dup2(out, STDOUT_FILENO);
-		close(out);
-		heredocpipaux(aux, fd[1]);
+		g_interactive = 2;
+		ft_writeheredoc(head->files[i], pfd);
 	}
-	else
-	{
-		close(fd[1]);
-		dup2(fd[0], STDIN_FILENO);
-		close(fd[0]);
-	}
+	close(pfd[1]);
+	dup2(pfd[0], STDIN_FILENO);
+	close(pfd[0]);
+	wait(NULL);
+	signals_handlers();
 }

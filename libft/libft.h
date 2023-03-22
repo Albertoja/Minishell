@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 20:06:33 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/25 17:18:32 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:13:03 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void	ft_lstclear_minishell(t_all **lst);
 char	ft_free_matrix(char **matrix);
-
+void	pipexinputredirection(t_all *aux, int i);
+void	pipexoutpuredirection(t_all *aux, int i);
+void	pipexappendredirection(t_all *aux, int i);
 #endif

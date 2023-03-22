@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 19:53:55 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/08 18:17:00 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:19:59 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	ft_redcomp(char *red)
 {
-	int cont;
+	int	cont;
 
 	cont = -1;
-	while(red[++cont])
+	while (red[++cont])
 	{
-		if(red[cont] == '0')
+		if (red[cont] == '0')
 			return (0);
 	}
 	return (1);
@@ -40,7 +40,7 @@ t_all	*ft_parse(char **matrix, int *cont)
 	t_all	*head;
 
 	head = ft_calloc(sizeof(t_all), 1);
-	if (matrix[++(*cont)])
+	if (matrix[(*cont)])
 		head = ft_basic_parse(matrix[*cont], head);
 	return (head);
 }
@@ -50,9 +50,9 @@ t_all	*ft_create_lst(char **matrix)
 	t_all	*head;
 	int		cont;
 
-	cont = -1;
+	cont = 0;
 	head = ft_parse(matrix, &cont);
-	while (matrix[cont])
+	while (matrix[++cont])
 		ft_lstadd_back(&head, ft_parse(matrix, &cont));
 	ft_free_matrix(matrix);
 	return (head);

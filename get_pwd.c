@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:31:05 by aespinos          #+#    #+#             */
-/*   Updated: 2022/11/03 18:34:51 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/21 19:56:13 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,12 @@
 char	*get_pwd(void)
 {
 	char	*ret;
+	char	buff[PATH_MAX + 1];
 	int		len;
 
 	len = 1;
 	ret = NULL;
-	while (1)
-	{
-		ret = malloc(sizeof(char) * len);
-		if (getcwd(ret, len) == NULL)
-			free(ret);
-		else
-			break ;
-		len++;
-	}
+	getcwd(buff, PATH_MAX + 1);
+	ret = strdup(buff);
 	return (ret);
 }

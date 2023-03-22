@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 18:45:41 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/01 20:05:24 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:16:44 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ char	*search_line_env(char *str, char **env)
 	return (ft_strdup(" "));
 }
 
-char	*elim_dollar_putequal_str(char *str, char **env, int status)
+char	*elim_dollar_putequal_str(char *str, char **env, int *status)
 {
 	char	*ret;
 	int		a;
@@ -94,7 +94,7 @@ char	*elim_dollar_putequal_str(char *str, char **env, int status)
 	if (ret[0] != '?')
 		return (search_line_env(ret, env));
 	free(ret);
-	return (ft_itoa(status));
+	return (ft_status_comp(status));
 }
 
 char	*ft_dollar_sust_str(char *str, char **env, int *status)

@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:59 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/08 19:13:50 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:51:10 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	no_input_signal(void)
 	exit(1);
 }
 
-char	**start_mini(char *input, int *status, char **env, char *home)
+char	**start_mini(char *input, int *status, char **env)
 {
 	char	**matrix;
 	t_all	*head;
@@ -28,8 +28,12 @@ char	**start_mini(char *input, int *status, char **env, char *home)
 	if (!matrix)
 		exit(0);
 	head = ft_create_lst(matrix);
-	home = ft_search_home(env, home);
-	env = exe(head, env, status, home);
+	if (head == NULL || !head)
+	{
+		write(1, "aqui\n", 5);
+		return (env);
+	}
+	env = exe(head, env, status);
 	free(input);
 	ft_lstclear_minishell(&head);
 	return (env);
@@ -41,7 +45,7 @@ void	dupfd(int *std)
 	dup2(STDOUT_FILENO, std[1]);
 }
 
-void	ft_wait_for_input(char **env, char *home)
+void	ft_wait_for_input(char **env)
 {
 	int			std[2];
 	char		*input;
@@ -58,12 +62,12 @@ void	ft_wait_for_input(char **env, char *home)
 		g_interactive = 0;
 		if (!input)
 			no_input_signal();
-		ft_create_history(input);
+		ft_create_history(input, env);
 		input = check_str(input);
 		if (!input || input == NULL || !(*input))
 			*status = 1;
 		if (input && input[0])
-			env = start_mini(input, status, env, home);
+			env = start_mini(input, status, env);
 		else
 			free(input);
 		dupfd(std);

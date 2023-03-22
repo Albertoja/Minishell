@@ -6,25 +6,25 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/07 21:36:44 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:32:22 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**exe(t_all *first, char **envp, int *status, char *home)
+char	**exe(t_all *first, char **envp, int *status)
 {
 	t_all	*aux;
 
 	aux = first;
 	if (first->cmds[0])
 	{
-		if (!first->next->cmds)
+		if (!first->next)
 		{
 			if (!first->dir)
 			{
 				if (is_builtin(first->cmds[0]) == 1)
-					envp = ft_builtins(first, envp, status, home);
+					envp = ft_builtins(first, envp, status);
 				else
 					execmd(first, envp, status);
 			}
@@ -32,14 +32,14 @@ char	**exe(t_all *first, char **envp, int *status, char *home)
 				redirections(first, envp, status);
 		}
 		else
-			pipex(aux, envp, status, home);
+			pipex(aux, envp, status);
 	}
 	return (envp);
 }
 
 void	execmd(t_all *first, char **envp, int *status)
 {
-	int		pid;
+	pid_t	pid;
 	int		i;
 	char	*path;
 
@@ -49,21 +49,18 @@ void	execmd(t_all *first, char **envp, int *status)
 		i = 0;
 		path = first->cmds[0];
 	}
-	else
-		path = get_path(first->cmds[0], envp);
-	if (!path)
+	path = get_path(first->cmds[0], envp);
+	pid = fork();
+	if (pid == 0)
 	{
-		ft_error("comand not found", first->cmds[0]);
-		*status = 127;
+		if (execve(path, &first->cmds[0], envp) == -1)
+		{
+			ft_error("command not found", first->cmds[0]);
+			*status = 127;
+			exit(127);
+		}
 	}
-	else
-	{
-		pid = fork();
-		if (pid == 0)
-			if (execve(path, &first->cmds[0], envp) == -1)
-				ft_error("command not found", first->cmds[0]);
-		waitpid(pid, status, 0);
-	}
+	waitpid(pid, status, 0);
 	if (i != 0)
 		free(path);
 }

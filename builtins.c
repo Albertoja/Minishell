@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:51:39 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/01 20:09:56 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:32:31 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,24 @@ int	ft_print_matrix_env(char **env)
 	return (0);
 }
 
-int	ft_pwd(int *status)
+int	ft_pwd(int *status, char **env)
 {
 	char	*ret;
+	char	buff[PATH_MAX + 1];
 	int		len;
 
 	len = 1;
 	ret = NULL;
-	*status = 0;
-	while (1)
+	if (*status == 1)
+		ret = ft_search_pwd(env);
+	if (ret == NULL)
 	{
-		ret = malloc(sizeof(char) * len);
-		if (getcwd(ret, len) == NULL)
-			free(ret);
-		else
-			break ;
-		len++;
+		getcwd(buff, PATH_MAX + 1);
+		ret = strdup(buff);
 	}
 	printf("%s\n", ret);
+	status = 0;
+	free(ret);
 	return (0);
 }
 
@@ -89,16 +89,16 @@ void	ft_exit(char **str, char **envc)
 	exit(env);
 }
 
-char	**ft_builtins(t_all *head, char **env, int *status, char *home)
+char	**ft_builtins(t_all *head, char **env, int *status)
 {
 	if (ft_strncmp(head->cmds[0], "exit", 10) == 0)
 		ft_exit(head->cmds, env);
 	else if (ft_strncmp(head->cmds[0], "pwd", 10) == 0)
-		ft_pwd(status);
+		ft_pwd(status, env);
 	else if (ft_strncmp(head->cmds[0], "echo", 10) == 0)
 		*status = ft_echo(head->cmds);
 	else if (ft_strncmp(head->cmds[0], "cd", 10) == 0)
-		env = ft_cd(head->cmds, env, status, home);
+		env = ft_cd(head->cmds, env, status);
 	else if (ft_strncmp(head->cmds[0], "env", 10) == 0)
 		ft_print_matrix_env(env);
 	else if (ft_strncmp(head->cmds[0], "export", 10) == 0)

@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 16:21:46 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/07 18:22:55 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/21 20:02:04 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*error_endpipe(void)
 	return (ft_strdup(""));
 }
 
-char	*error_pipeend(char *oldinput)
+char	*ft_endpipe2(char *oldinput)
 {
 	free(oldinput);
 	if (g_interactive == 2)
@@ -38,18 +38,14 @@ char	*ft_endpipe(char *oldinput)
 	{
 		input = readline(YELLOW">"RESET);
 		if (!input)
-		{
-			return (error_pipeend(oldinput));
-		}
+			return (ft_endpipe2(oldinput));
 		if (input && *input)
 		{
-			input = ft_strdup(input);
 			oldinput = ft_strjoin(oldinput, input);
 			free(input);
 			return (oldinput);
 		}
 	}
 	free(input);
-	printf("old = %s\n", oldinput);
 	return (oldinput);
 }

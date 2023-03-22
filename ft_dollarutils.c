@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 19:07:22 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/01 20:04:12 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:16:19 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_strings	ft_dollarutils02(t_strings st, int *status, char **env, int co)
 	st.ret = ft_strjoin_n(st.ret, st.str_aux, co);
 	while (*st.str_aux && *st.str_aux != '$')
 		st.str_aux++;
-	st.var = elim_dollar_putequal_str(st.str_aux++, env, *status);
+	st.var = elim_dollar_putequal_str(st.str_aux++, env, status);
 	while (*st.str_aux && *st.str_aux != 32 && *st.str_aux != 34
 		&& *st.str_aux != 39 && *st.str_aux != 36 && *st.str_aux != '?')
 		st.str_aux++;

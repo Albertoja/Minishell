@@ -6,16 +6,16 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:50 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/08 18:37:47 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:11:34 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	leaks(void)
-{
-	system("leaks minishell");
-}
+// void	leaks(void)
+// {
+// 	system("leaks minishell");
+// }
 
 int	g_interactive = 0;
 
@@ -69,18 +69,15 @@ void	ft_shlvl(char **env)
 int	main(int argc, char *argv[], char *envp[])
 {
 	char	**env;
-	char	*home;
 
-	home = NULL;
-	atexit(leaks);
+	//atexit(leaks);
 	if (argc != 1 || argv[1] || !envp)
 		return (0);
 	env = copy_matrix(envp);
 	ft_shlvl(env);
-	home = ft_search_home(env, home);
-	ft_read_history();
+	ft_read_history(env);
 	no_ctrlprint();
 	signals_handlers();
-	ft_wait_for_input(env, home);
+	ft_wait_for_input(env);
 	ft_free_matrix(env);
 }
