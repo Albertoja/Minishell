@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:29:16 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/23 18:20:14 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:06:21 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	ft_writeheredoc(char *limiter, int *pfd)
 		line = readline(">");
 		if (!line || g_interactive == 3)
 		{
+			write(1, "a\n" ,2);
 			close(pfd[0]);
 			close(pfd[1]);
 			g_interactive = 0;
@@ -85,6 +86,7 @@ void	ft_writeheredoc(char *limiter, int *pfd)
 		}
 		if (!ft_strncmp(line, limiter, len))
 		{
+			write(1, "b\n" ,2);
 			close(pfd[0]);
 			close(pfd[1]);
 			g_interactive = 0;

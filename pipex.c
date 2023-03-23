@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:13:02 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/23 19:26:35 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:04:32 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	select_redirection_pipex(t_all *aux, int *pip, int *out)
 		else if (aux->dir[i] == '4')
 			pipexappendredirection(aux, i);
 		else if (aux->dir[i] == '3')
-			ft_readheredoc(aux, i, out[1]); 
+			ft_readheredoc(aux, i, out[0]); 
 	}
 	if (aux->next != NULL && (!ft_strchr(aux->dir, '2')
 			&& !ft_strchr(aux->dir, '4')))

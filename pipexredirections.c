@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipexredirections.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:29:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/23 19:29:42 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:53:51 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,8 @@ void	pipexinputredirection(t_all *aux, int i)
 	{
 		ft_error("could not open file", aux->files[i]);
 	}
-	else
-	{
-		dup2(fd, STDIN_FILENO);
-		close(fd);
-	}
+	dup2(fd, STDIN_FILENO);
+	close(fd);
 }
 
 void	pipexoutpuredirection(t_all *aux, int i)
