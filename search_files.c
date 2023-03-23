@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   search_files.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mario <mario@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/17 15:57:27 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/14 17:10:23 by mario            ###   ########.fr       */
+/*   Updated: 2023/03/23 17:49:42 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,7 @@ char	**search_files(char *str)
 	}
 	ret = ft_split_pipe(str_aux[0], '|');
 	free (str_aux[0]);
+	if (!ret)
+		return(NULL);
 	return (ret);
 }

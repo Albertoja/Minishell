@@ -6,19 +6,21 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:13:02 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/22 19:39:55 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:26:35 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	select_redirection_pipex(t_all *aux, int *pip, int out)
+void	select_redirection_pipex(t_all *aux, int *pip, int *out)
 {
 	int	i;
 
 	i = -1;
 	while (aux->files && aux->files[++i])
 	{
+		//write(1, &aux->dir[i], 1);
+		//printf("ADIOS");
 		if (aux->dir[i] == '2')
 			pipexoutpuredirection(aux, i);
 		else if (aux->dir[i] == '1')
@@ -26,21 +28,23 @@ void	select_redirection_pipex(t_all *aux, int *pip, int out)
 		else if (aux->dir[i] == '4')
 			pipexappendredirection(aux, i);
 		else if (aux->dir[i] == '3')
-			heredocpip(aux, i, out);
+			ft_readheredoc(aux, i, out[1]); 
 	}
 	if (aux->next != NULL && (!ft_strchr(aux->dir, '2')
 			&& !ft_strchr(aux->dir, '4')))
 		dup2(pip[1], STDOUT_FILENO);
 	else if (!ft_strchr(aux->dir, '2')
 		&& !ft_strchr(aux->dir, '4'))
-		dup2(out, STDOUT_FILENO);
+		dup2(out[0], STDOUT_FILENO);
 }
+
 
 void	childprocess(t_all *aux, char **envp, int *status, int *pip)
 {
-	int	out;
+	int	out[2];
 
-	out = dup(STDOUT_FILENO);
+	out[0] = dup(STDOUT_FILENO);
+	out[1]= dup(STDIN_FILENO);
 	select_redirection_pipex(aux, pip, out);
 	close(pip[0]);
 	close(pip[1]);
@@ -51,7 +55,7 @@ void	childprocess(t_all *aux, char **envp, int *status, int *pip)
 	}
 	if (execve(get_path(aux->cmds[0], envp), aux->cmds, envp) == -1)
 	{
-		ft_error("EPX : command not found", aux->cmds[0]);
+		ft_error("EPX command not found", aux->cmds[0]);
 		exit(127);
 	}
 }
@@ -61,8 +65,11 @@ void	pipex(t_all *head, char **envp, int *status)
 	int		pip[2];
 	t_all	*aux;
 	pid_t	pid;
+	int		cmd_nbr;
 
+	cmd_nbr = 0;
 	aux = head;
+	pid = 0;
 	while (aux)
 	{
 		pipe(pip);
@@ -78,5 +85,6 @@ void	pipex(t_all *head, char **envp, int *status)
 		aux = aux->next;
 	}
 	close(STDIN_FILENO);
-	waitpid(pid, status, 0);
+	while(waitpid(-1, NULL, WUNTRACED) != -1)
+		cmd_nbr++;
 }

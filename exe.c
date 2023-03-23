@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/22 17:32:22 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:54:16 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,14 @@ char	**exe(t_all *first, char **envp, int *status)
 	t_all	*aux;
 
 	aux = first;
-	if (first->cmds[0])
+	if (first)
 	{
-		if (!first->next)
+		if (!first->dir)
 		{
-			if (!first->dir)
-			{
-				if (is_builtin(first->cmds[0]) == 1)
-					envp = ft_builtins(first, envp, status);
-				else
-					execmd(first, envp, status);
-			}
+			if (is_builtin(first->cmds[0]) == 1)
+				envp = ft_builtins(first, envp, status);
 			else
-				redirections(first, envp, status);
+				execmd(first, envp, status);
 		}
 		else
 			pipex(aux, envp, status);

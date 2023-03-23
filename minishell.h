@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/22 19:40:49 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 20:51:01 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,6 @@ int			ft_comp_dollar(char *str, int co);
 int			ft_errorcd(char *new_dir);
 int			ft_comp_var(char *cmds, char **env);
 char		*ft_search_home(char **env);
-void		heredocpip(t_all *aux, int i, int out);
 void		ft_pipex_aux(int *pip, pid_t pid, int *in_out_all_act);
 int			ft_rederror(char *straux, int cont);
 char		*ft_errorred(char *str, int error);
@@ -145,4 +144,7 @@ int			ft_errorcd2(void);
 char		*ft_access_dir(char *new_dir);
 char		*ft_search_dir_simp(char *new_dir);
 char		*ft_status_comp(int *status);
+void		signals_handlers_default(void);
+void	ft_readheredoc(t_all *head, int i, int out);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:29:16 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/22 19:40:17 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/23 18:20:14 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip)
 	}
 }
 
-static void	ft_writeheredoc(char *limiter, int *pfd)
+void	ft_writeheredoc(char *limiter, int *pfd)
 {
 	size_t	len;
 	char	*line;
@@ -75,7 +75,7 @@ static void	ft_writeheredoc(char *limiter, int *pfd)
 	len = ft_strlen(limiter);
 	while (limiter)
 	{
-		line = readline(YELLOW">"RESET);
+		line = readline(">");
 		if (!line || g_interactive == 3)
 		{
 			close(pfd[0]);
@@ -96,7 +96,7 @@ static void	ft_writeheredoc(char *limiter, int *pfd)
 	}
 }
 
-void	heredocpip(t_all *head, int i, int out)
+void	ft_readheredoc(t_all *head, int i, int out)
 {
 	int		pfd[2];
 	pid_t	pid;
@@ -113,6 +113,7 @@ void	heredocpip(t_all *head, int i, int out)
 	close(pfd[1]);
 	dup2(pfd[0], STDIN_FILENO);
 	close(pfd[0]);
+	signals_handlers_default();
 	wait(NULL);
 	signals_handlers();
 }

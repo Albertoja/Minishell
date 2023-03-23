@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:44:59 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/21 20:26:16 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/22 19:54:08 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,17 @@ void	handler_ctrlslash(int sig)
 		return ;
 	}
 	ft_putstr_fd("^\\Quit: 3\n", 1);
+}
+
+void	signals_handlers_default(void)
+{
+	struct sigaction	ctrlc;
+	struct sigaction	ctrlslash;
+
+	ctrlc.sa_handler = SIG_IGN;
+	ctrlslash.sa_handler = SIG_IGN;
+	sigaction(SIGINT, &ctrlc, NULL);
+	sigaction(SIGQUIT, &ctrlslash, NULL);
 }
 
 void	signals_handlers(void)
