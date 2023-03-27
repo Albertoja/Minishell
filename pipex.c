@@ -6,12 +6,11 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/27 11:13:02 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/23 21:23:41 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:20:49 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
 
 void	select_redirection_pipex(t_all *aux, int *pip, int *out)
 {
@@ -27,7 +26,7 @@ void	select_redirection_pipex(t_all *aux, int *pip, int *out)
 		else if (aux->dir[i] == '4')
 			pipexappendredirection(aux, i);
 		else if (aux->dir[i] == '3')
-			ft_readheredoc(aux, i, out[0]); 
+			ft_readheredoc(aux, i, out[0]);
 	}
 	if (aux->next != NULL && (!ft_strchr(aux->dir, '2')
 			&& !ft_strchr(aux->dir, '4')))
@@ -37,13 +36,12 @@ void	select_redirection_pipex(t_all *aux, int *pip, int *out)
 		dup2(out[0], STDOUT_FILENO);
 }
 
-
 void	childprocess(t_all *aux, char **envp, int *status, int *pip)
 {
 	int	out[2];
 
 	out[0] = dup(STDOUT_FILENO);
-	out[1]= dup(STDIN_FILENO);
+	out[1] = dup(STDIN_FILENO);
 	select_redirection_pipex(aux, pip, out);
 	close(pip[0]);
 	close(pip[1]);
@@ -84,6 +82,6 @@ void	pipex(t_all *head, char **envp, int *status)
 		aux = aux->next;
 	}
 	close(STDIN_FILENO);
-	while(waitpid(-1, NULL, WUNTRACED) != -1)
+	while (waitpid(-1, NULL, WUNTRACED) != -1)
 		cmd_nbr++;
 }

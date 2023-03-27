@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/23 20:49:56 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:02:41 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,8 @@ char	**exe(t_all *first, char **envp, int *status)
 	}
 	else
 		pipex(aux, envp, status);
-	return(envp);
+	return (envp);
 }
-
 
 void	execmd(t_all *first, char **envp, int *status)
 {
@@ -72,19 +71,23 @@ void	redirections(t_all *first, char **envp, int *status)
 
 int	is_builtin(char *command)
 {
+	char	*aux;
+
+	aux = ft_tolow(command);
 	if (ft_strncmp(command, "exit", 10) == 0)
 		return (1);
-	if (ft_strncmp(command, "echo", 10) == 0)
+	if (ft_strncmp(aux, "echo", 10) == 0)
 		return (1);
-	if (ft_strncmp(command, "cd", 10) == 0)
+	if (ft_strncmp(aux, "cd", 10) == 0)
 		return (1);
-	if (ft_strncmp(command, "pwd", 10) == 0)
+	if (ft_strncmp(aux, "pwd", 10) == 0)
 		return (1);
-	if (ft_strncmp(command, "env", 10) == 0)
+	if (ft_strncmp(aux, "env", 10) == 0)
 		return (1);
 	if (ft_strncmp(command, "export", 10) == 0)
 		return (1);
 	if (ft_strncmp(command, "unset", 10) == 0)
 		return (1);
+	free(aux);
 	return (0);
 }

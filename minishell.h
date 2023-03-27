@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/22 20:51:01 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/27 15:51:51 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ char		*ft_access_dir(char *new_dir);
 char		*ft_search_dir_simp(char *new_dir);
 char		*ft_status_comp(int *status);
 void		signals_handlers_default(void);
-void	ft_readheredoc(t_all *head, int i, int out);
+void		ft_readheredoc(t_all *head, int i, int out);
+char		*ft_tolow(char	*str);
 
 #endif
