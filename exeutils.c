@@ -3,14 +3,32 @@
 /*                                                        :::      ::::::::   */
 /*   exeutils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:44:07 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/07 19:41:34 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:06:07 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	find(char **envp, int *i_j)
+{
+	while (envp[i_j[0]] && ft_strncmp(envp[i_j[0]], "PATH=", 5))
+		i_j[0]++;
+}
+
+void	freeall(char *cmd, char	**paths)
+{
+	free(cmd);
+	ft_free_matrix(paths);
+}
+
+char	*freeout(char *cmd, char	*goodpath, char	**paths)
+{
+	freeall(cmd, paths);
+	return (goodpath);
+}
 
 void	free_paths(char **path, int j)
 {
@@ -27,12 +45,6 @@ void	free_paths(char **path, int j)
 	free(path);
 }
 
-void	freeall(char *cmd, char	**paths)
-{
-	free(cmd);
-	ft_free_matrix(paths);
-}
-
 char	*get_path(char *cmd, char *envp[])
 {
 	char	**paths;
@@ -43,18 +55,16 @@ char	*get_path(char *cmd, char *envp[])
 	i_j[1] = 0;
 	if (access(cmd, 0) == 0)
 		return (cmd);
-	while (envp[i_j[0]] && ft_strncmp(envp[i_j[0]], "PATH=", 5))
-		i_j[0]++;
+	find(envp, i_j);
+	if (!envp[i_j[0]])
+		return (NULL);
 	paths = ft_split(envp[i_j[0]] + 5, ':');
 	cmd = ft_strjoinm("/", cmd);
 	while (paths[i_j[1]])
 	{
 		goodpath = ft_strjoinm(paths[i_j[1]], cmd);
 		if (access(goodpath, 0) == 0)
-		{
-			freeall(cmd, paths);
-			return (goodpath);
-		}
+			freeout(cmd, goodpath, paths);
 		free(goodpath);
 		i_j[1]++;
 	}
