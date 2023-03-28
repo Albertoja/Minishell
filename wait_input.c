@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:59 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/22 20:25:56 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:00:49 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ char	**start_mini(char *input, int *status, char **env)
 		exit(0);
 	head = ft_create_lst(matrix);
 	if (head == NULL || !head)
-	{
-		write(1, "aqui\n", 5);
 		return (env);
-	}
 	env = exe(head, env, status);
 	free(input);
 	ft_lstclear_minishell(&head);
@@ -64,8 +61,6 @@ void	ft_wait_for_input(char **env)
 			no_input_signal();
 		ft_create_history(input, env);
 		input = check_str(input);
-		if (!input || input == NULL || !(*input))
-			*status = 1;
 		if (input && input[0])
 			env = start_mini(input, status, env);
 		else

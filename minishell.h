@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:27:12 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/27 15:51:51 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:26:44 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int			search_files42(char *str);
 size_t		ft_linelen(const char *line);
 size_t		ft_strlen(const char *s);
 t_all		*ft_create_lst(char **matrix);
-char		**ft_unset(char **cmds, char **env);
+char		**ft_unset(char **cmds, char **env, int *status);
 void		*ft_calloc(size_t count, size_t size);
 void		error(char *str);
 void		execmd(t_all *first, char **envp, int *status);

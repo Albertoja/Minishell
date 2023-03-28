@@ -3,14 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 17:11:38 by aespinos          #+#    #+#             */
-/*   Updated: 2023/02/28 13:45:00 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:03:07 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_unset_var(char *cmds, int *status)
+{
+	int	cont;
+
+	cont = 0;
+	while (cmds[cont])
+	{
+		if ((cmds[cont] >= 'a' && cmds[cont] <= 'z')
+			|| (cmds[cont] >= 'A' && cmds[cont] <= 'Z') || cmds[cont] == '_')
+			cont++;
+		else
+		{
+			printf("minishell: unset: `%s': not a valid identifier\n", cmds);
+			*status = 1;
+			return (1);
+		}
+	}
+	return (0);
+}
 
 int	ft_len_equal(char *str, char a)
 {
@@ -31,6 +51,8 @@ int	ft_comp_var(char *cmds, char **env)
 	int	ret;
 
 	ret = 0;
+	if (!env)
+		return (-1);
 	while (env[ret])
 	{
 		len = ft_len_equal(env[ret], '=');
@@ -64,18 +86,31 @@ char	**ft_delete_str_matrix(char **matrix, int col)
 	return (ret);
 }
 
-char	**ft_unset(char **cmds, char **env)
+char	**ft_unset(char **cmds, char **env, int *status)
 {
-	int	cont;
-	int	col;
+	int		cont;
+	int		col;
+	char	**new_env;
+	int		flag;
 
+	flag = 0;
+	*status = 0;
 	cont = 1;
 	while (cmds[cont])
 	{
-		col = ft_comp_var(cmds[cont], env);
-		if (col >= 0)
-			env = ft_delete_str_matrix(env, col);
+		if (ft_unset_var(cmds[cont], status) == 0)
+		{
+			col = ft_comp_var(cmds[cont], env);
+			if (col >= 0)
+			{
+				new_env = ft_delete_str_matrix(env, col);
+				flag++;
+			}
+		}
 		cont++;
 	}
-	return (env);
+	if (flag == 0)
+		return (env);
+	ft_free_matrix(env);
+	return (new_env);
 }

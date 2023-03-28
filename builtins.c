@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:51:39 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/28 16:05:09 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:26:21 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ char	**ft_builtins(t_all *head, char **env, int *status)
 	else if (ft_strncmp(head->cmds[0], "export", 10) == 0)
 		env = ft_export(head->cmds, env, status);
 	else if (ft_strncmp(head->cmds[0], "unset", 10) == 0)
-		env = ft_unset(head->cmds, env);
+		env = ft_unset(head->cmds, env, status);
 	else
 		ft_error("command not found", head->cmds[0]);
 	free(aux);
