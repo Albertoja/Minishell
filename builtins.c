@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:51:39 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/27 16:22:42 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:05:09 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ char	**ft_builtins(t_all *head, char **env, int *status)
 	else if (ft_strncmp(aux, "echo", 10) == 0)
 		*status = ft_echo(head->cmds);
 	else if (ft_strncmp(aux, "cd", 10) == 0)
-		env = ft_cd(head->cmds, env, status);
+	{
+		if (ft_strncmp(head->cmds[0], "cd", 10) == 0)
+			env = ft_cd(head->cmds, env, status);
+	}
 	else if (ft_strncmp(aux, "env", 10) == 0)
 		ft_print_matrix_env(env);
 	else if (ft_strncmp(head->cmds[0], "export", 10) == 0)

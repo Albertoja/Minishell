@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/27 16:25:34 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:00:11 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int	is_builtin(char *command)
 
 	ret = 0;
 	aux = ft_tolow(command);
-	if (ft_strncmp(command, "exit", 10) == 0)
+	if (ft_strncmp(aux, "exit", 10) == 0)
 		ret = 1;
 	if (ft_strncmp(aux, "echo", 10) == 0)
 		ret = 1;
@@ -86,9 +86,9 @@ int	is_builtin(char *command)
 		ret = 1;
 	if (ft_strncmp(aux, "env", 10) == 0)
 		ret = 1;
-	if (ft_strncmp(command, "export", 10) == 0)
+	if (ft_strncmp(aux, "export", 10) == 0)
 		ret = 1;
-	if (ft_strncmp(command, "unset", 10) == 0)
+	if (ft_strncmp(aux, "unset", 10) == 0)
 		ret = 1;
 	free(aux);
 	return (ret);
