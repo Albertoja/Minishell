@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 16:13:14 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/28 16:18:38 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 16:42:36 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	**ft_change_pwd(char **env, char *new_dir, int i)
 
 char	*back_three_dir(char *new_dir)
 {
-	while(access(new_dir, F_OK) != 0)
+	while (access(new_dir, F_OK) != 0)
 		new_dir = back_one_dir(new_dir);
 	return (new_dir);
 }
