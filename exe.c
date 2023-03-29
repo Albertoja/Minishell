@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/28 16:00:11 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:42:34 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,8 @@ int	is_builtin(char *command)
 
 	ret = 0;
 	aux = ft_tolow(command);
+	if (!aux)
+		return (1);
 	if (ft_strncmp(aux, "exit", 10) == 0)
 		ret = 1;
 	if (ft_strncmp(aux, "echo", 10) == 0)

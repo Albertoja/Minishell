@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:44:59 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/28 18:00:51 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:45:05 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	signals_handlers(void)
 	struct sigaction	ctrlslash;
 
 	ctrlc.sa_handler = &handler_ctrlc;
-	ctrlslash.sa_handler = &handler_ctrlslash;
+	ctrlslash.sa_handler = SIG_IGN;
 	sigaction(SIGINT, &ctrlc, NULL);
 	sigaction(SIGQUIT, &ctrlslash, NULL);
 }

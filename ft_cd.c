@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 17:28:29 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/27 16:26:07 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:53:25 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,8 @@ char	**ft_cd(char **args, char **env, int *status)
 
 	if (!env)
 		return (NULL);
+	if (ft_strncmp(args[0], "cd", 10) != 0)
+		return (env);
 	path = get_pwd();
 	if (!args[1] || ft_strncmp(args[1], "~", 5) == 0)
 		new_dir = get_home(env, status);

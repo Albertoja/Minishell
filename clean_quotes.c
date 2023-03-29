@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 18:45:37 by aespinos          #+#    #+#             */
-/*   Updated: 2023/01/23 17:57:25 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/03/28 19:55:50 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ char	*copy_no_quotes(char *str)
 			com = *str++;
 			while (*str && *str != com)
 				aux[i++] = *str++;
-			if (aux[i] != com)
-				break ;
 		}
 		if (*str != com)
 			aux[i++] = *str;
