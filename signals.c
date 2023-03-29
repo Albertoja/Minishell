@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/25 17:44:59 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/29 16:53:54 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:11:25 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void	handler_ctrlslash(int sig)
 	sig++;
 	if (g_interactive)
 	{
+		rl_replace_line("", 0);
+		rl_on_new_line();
 		rl_on_new_line();
 		rl_redisplay();
 		return ;
