@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/15 19:46:32 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/29 17:45:36 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:27:56 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,16 @@ void	execmd(t_all *first, char **envp, int *status)
 	path = get_path(first->cmds[0], envp);
 	if (!path)
 	{
-		ft_error("path not found", first->cmds[0]);
+		ft_error("command not found", first->cmds[0]);
+		*status = 1;
 		return ;
 	}
 	pid = fork();
-	if (pid == 0)
+	if (pid == 0 && execve(path, &first->cmds[0], envp) == -1)
 	{
-		if (execve(path, &first->cmds[0], envp) == -1)
-		{
-			ft_error("command not found", first->cmds[0]);
-			*status = 127;
-			exit(127);
-		}
+		ft_error("command not found", first->cmds[0]);
+		*status = 127;
+		exit(127);
 	}
 	waitpid(pid, status, 0);
 	if (i != 0)
