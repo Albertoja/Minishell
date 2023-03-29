@@ -6,7 +6,7 @@
 /*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:50 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/29 17:56:02 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/03/29 18:09:22 by magonzal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,11 @@
 
 int	g_interactive = 0;
 
-void	leaks(void)
-{
-	system("leaks minishell");
-}
-
 char	**ft_mini_env(void)
 {
 	char	**ret;
 	char	*pwd;
+
 	pwd = get_pwd();
 	ret = malloc(sizeof(char *) * 4);
 	ret[0] = ft_strjoinm("PWD=", pwd);
@@ -84,10 +80,8 @@ int	main(int argc, char *argv[], char *envp[])
 {
 	char	**env;
 
-	atexit(leaks);
 	if (argc != 1 || argv[1] || !envp)
 		return (0);
-	//env = NULL;
 	env = copy_matrix(envp);
 	ft_shlvl(env);
 	ft_read_history(env);
