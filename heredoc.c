@@ -6,7 +6,7 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 17:29:16 by magonzal          #+#    #+#             */
-/*   Updated: 2023/03/23 21:24:44 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:37:24 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip)
 	while (a == 0)
 	{
 		input = readline(YELLOW">"RESET);
-		if (!ft_strncmp(input, f->files[0], fd_len[1]))
+		if (!ft_strncmp(input, f->files[0], fd_len[1])
+			&& ft_strlen(f->files[0]) == ft_strlen(input))
 		{
 			close(pip[0]);
 			close(pip[1]);
@@ -67,13 +68,13 @@ void	heredocaux(int *fd_len, t_all *f, char **envp, int *pip)
 	}
 }
 
-void	ft_writeheredoc(char *limiter, int *pfd)
+void	ft_writeheredoc(char *l, int *pfd)
 {
 	size_t	len;
 	char	*line;
 
-	len = ft_strlen(limiter);
-	while (limiter)
+	len = ft_strlen(l);
+	while (l)
 	{
 		line = readline(YELLOW">"RESET);
 		if (!line || g_interactive == 3)
@@ -83,7 +84,7 @@ void	ft_writeheredoc(char *limiter, int *pfd)
 			g_interactive = 0;
 			exit(1);
 		}
-		if (!ft_strncmp(line, limiter, len))
+		if (!ft_strncmp(line, l, len) && ft_strlen(l) == ft_strlen(line))
 		{
 			close(pfd[0]);
 			close(pfd[1]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:42:44 by magonzal          #+#    #+#             */
-/*   Updated: 2023/02/28 13:51:44 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:41:43 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	outputredirectionaux(t_all *f, char **envp, char *path, int *i)
 		dup2(i[0], STDOUT_FILENO);
 		(i[1])++;
 	}
+	(void)envp;
+	(void)path;
 	if (execve(path, &f->cmds[0], envp) == -1)
 	{
 		free(path);

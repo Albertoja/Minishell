@@ -6,11 +6,30 @@
 /*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 18:21:44 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/28 19:30:20 by aespinos         ###   ########.fr       */
+/*   Updated: 2023/04/10 16:02:29 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ft_check_pipe2(char *str, int aux)
+{
+	while (str[aux])
+	{
+		if (str[aux] == ' ' || (str[aux] >= 9 && str[aux] <= 13))
+			aux++;
+		else
+			break ;
+	}
+	return (aux);
+}
+
+char	*ft_errpipe(char *str)
+{
+	printf("minishell: syntax error near unexpected token `|'\n");
+	free(str);
+	return (ft_strdup(" "));
+}
 
 char	*ft_check_pipe(char *str)
 {
@@ -20,83 +39,19 @@ char	*ft_check_pipe(char *str)
 	while (str[aux] == ' ' || (str[aux] >= 9 && str[aux] <= 13))
 		aux++;
 	if (str[aux] == '|')
-		ft_error("pipe suelto", NULL);
+		return (ft_errpipe(str));
 	while (str[aux])
 	{
 		if (str[aux] == '|')
 		{
 			aux++;
-			while (str[aux])
-			{
-				if (str[aux] == ' ' || (str[aux] >= 9 && str[aux] <= 13))
-					aux++;
-				else
-					break ;
-			}
+			aux = ft_check_pipe2(str, aux);
+			if (str[aux] == '|')
+				return (ft_errpipe(str));
 			if (!str[aux])
 				return (ft_endpipe(str));
 		}
 		aux++;
-	}
-	return (str);
-}
-
-int	ft_rederror(char *straux, int cont)
-{
-	cont++;
-	while (straux[cont])
-	{
-		if (straux[cont] == ' ')
-			cont++;
-		else
-			return (1);
-	}
-	return (0);
-}
-
-char	*ft_check_red2(char *str, int cont)
-{
-	if (!ft_rederror(str, cont))
-		return (ft_errorred(str, 1));
-	else
-	{
-		cont++;
-		if (str[cont] == '<')
-			return (ft_errorred(str, 2));
-		if (str[cont] == '>')
-		{
-			if (!str[cont + 1])
-				return (ft_errorred(str, 1));
-		}
-	}
-	return (str);
-}
-
-char	*ft_check_red(char *str)
-{
-	int	cont;
-
-	cont = -1;
-	while (str[++cont] && str && str != NULL)
-	{
-		if (str[cont] == '<')
-		{
-			if (!ft_rederror(str, cont))
-				return (ft_errorred(str, 1));
-			else
-			{
-				cont++;
-				if (str[cont] == '>')
-					return (ft_errorred(str, 2));
-				if (str[cont] == '<')
-				{
-					if (!str[cont + 1])
-						return (ft_errorred(str, 1));
-				}
-			}
-		}
-		else if (str[cont] == '>')
-			str = ft_check_red2(str, cont);
 	}
 	return (str);
 }

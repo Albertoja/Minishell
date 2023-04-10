@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_history.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: magonzal <magonzal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aespinos <aespinos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:47:51 by aespinos          #+#    #+#             */
-/*   Updated: 2023/03/29 18:03:54 by magonzal         ###   ########.fr       */
+/*   Updated: 2023/04/04 20:22:21 by aespinos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	ft_create_history(char *input, char **env)
 	int		a;
 
 	a = -1;
+	if (!input || !(*input))
+		return ;
 	home = ft_search_home(env);
 	if (home)
 	{
